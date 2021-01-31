@@ -7,5 +7,5 @@ RUN apt-get update && \
 # Install missing packets
     pip3 install jupyter ipywidgets ipycanvas tqdm requests
 
-CMD ["jupyter-notebook", "--port", "8080", "--allow-root", "--notebook-dir", "/mnt/notebook", "--ip", "*"]
+CMD ["jupyter-notebook", "--notebook-dir=/mnt/notebook", "--allow-root", "--no-browser", "--ip=*", "--port=8080", "--NotebookApp.token=''", "--NotebookApp.password=''"]
 
