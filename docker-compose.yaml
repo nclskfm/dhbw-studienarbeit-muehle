@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  jupyter-notebook:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/mnt/notebook
