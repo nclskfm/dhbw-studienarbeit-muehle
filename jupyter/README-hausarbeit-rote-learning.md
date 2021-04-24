@@ -1,6 +1,6 @@
 # Hausarbeit: Rote Learning
 
-**Authoren**: @r-franzke und @jstsddg
+**Autoren**: @r-franzke und @jstsddg
 
 ## Abstract
 Diese Hausarbeit basiert auf dem Paper `Some Studies in Machine Learning Using the Game of Checkers` von A. L. Samuel und betrachtet inwiefern Auswendiglernen die Qualität der Künstlichen Intelligenz verbessern kann.

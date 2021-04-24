@@ -1,6 +1,6 @@
 # Hausarbeit: Rote Learning
 
-**Authoren**: @benfu99 und @nclskfm
+**Autoren**: @benfu99 und @nclskfm
 
 ## Abstract
 // TODO
