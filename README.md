@@ -6,7 +6,7 @@ Als Grundlage dient das [Skript (Kapitel 4 *Playing Games*)](https://github.com/
 
 ![](images/player-vs-alphabetapruning.png)
 
-Da dieses Repository die Arbeit von einer Studienarbeit und zwei Hausarbeiten beinhaltet, werden diese hier genau aufgeschlüsselt:
+Da dieses Repository die Arbeit von einer Studienarbeit und zwei Hausarbeiten beinhaltet, werden diese im Folgenden genau aufgeschlüsselt.
 
 ## Studienarbeit
 

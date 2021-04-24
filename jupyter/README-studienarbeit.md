@@ -3,7 +3,7 @@
 **Authoren**: @nclskfm, @benfu99 und @jstsddg
 
 ## Abstract
-In dieser Studienarbeit werden die Algorithmen `Minimax` und `Alpha-Beta-Pruning` implementiert um eine künstliche Intelligenz zu schreiben, welche das Brettspiel Mühle spielen kann.
+In dieser Studienarbeit werden die Algorithmen `Minimax` und `Alpha-Beta-Pruning` implementiert, um eine künstliche Intelligenz zu schreiben, welche das Brettspiel Mühle spielen kann.
 Als Grundlage dient das [Skript (Kapitel 4 *Playing Games*)](https://github.com/karlstroetmann/Artificial-Intelligence) von Prof. Dr. Karl Stroetmann.
 
 
