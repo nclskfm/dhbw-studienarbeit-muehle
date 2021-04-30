@@ -15,7 +15,6 @@ Folgende Notebooks sind Teil der Studienarbeit und sollten in der angegebenen Re
 * `nmm-game.ipynb`
 * `nmm-artificial-intelligence.ipynb`
 * `nmm-heuristic.ipynb`
-* `nmm-cache.ipynb`
 * `nmm-symmetry.ipynb`
 * `nmm-minimax.ipynb`
 * `nmm-alpha-beta-pruning.ipynb`
