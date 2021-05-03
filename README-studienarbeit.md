@@ -20,3 +20,4 @@ Folgende Notebooks sind Teil der Studienarbeit und sollten in der angegebenen Re
 * `nmm-alpha-beta-pruning.ipynb`
 * `nmm-gui-utils.ipynb`
 * `nmm-gui.ipynb`
+* `nmm-tournament.ipynb`
