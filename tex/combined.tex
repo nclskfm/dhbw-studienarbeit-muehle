@@ -2362,10 +2362,9 @@ Die gewünschte maximale Anzahl an Zuständen \texttt{maxCount} kann im
 \texttt{AlphaBetaPruning}-Konstruktor mit Hilfe der Option
 \texttt{max\_states} festgelegt werden.
 
-\hypertarget{exception-fuxfcr-das-erreichen-der-maximalen-zustuxe4nden-iterativemaxcountexception}{%
-\paragraph{\texorpdfstring{Exception für das Erreichen der maximalen
+{\textbf{Exception für das Erreichen der maximalen
 Zuständen
-\texttt{IterativeMaxCountException}}{Exception für das Erreichen der maximalen Zuständen IterativeMaxCountException}}\label{exception-fuxfcr-das-erreichen-der-maximalen-zustuxe4nden-iterativemaxcountexception}}
+\texttt{IterativeMaxCountException}}
 
 Die Exception \texttt{IterativeMaxCountException} wird aufgerufen, wenn
 ein Fehler aufgrund des Erreichens der maximal zu betrachtenden Zustände
@@ -2383,10 +2382,10 @@ Fehlermeldung wiedergeben zu können.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{hilfsfunktion-zum-uxfcberpruxfcfen-der-maximal-zu-besuchenden-zustuxe4nde-checkmaxstates}{%
-\paragraph{\texorpdfstring{Hilfsfunktion zum Überprüfen der maximal zu
+\clearpage
+\textbf{Hilfsfunktion zum Überprüfen der maximal zu
 besuchenden Zustände
-\texttt{checkMaxStates}}{Hilfsfunktion zum Überprüfen der maximal zu besuchenden Zustände checkMaxStates}}\label{hilfsfunktion-zum-uxfcberpruxfcfen-der-maximal-zu-besuchenden-zustuxe4nde-checkmaxstates}}
+\texttt{checkMaxStates}}
 
 Die Hilfsfunktion \texttt{checkMaxStates} zählt die errechneten und
 besuchten Zustände für die Implementierung der \emph{iterativen
@@ -2408,8 +2407,7 @@ ist in der Funktion \texttt{bestMoves} implementiert.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{sortieren-der-zustuxe4nde}{%
-\paragraph{Sortieren der Zustände}\label{sortieren-der-zustuxe4nde}}
+\textbf{Sortieren der Zustände}\label{sortieren-der-zustuxe4nde}
 
 Die Funktion \texttt{orderMoves} sortiert eine Liste von Zuständen
 \texttt{states} für einen Spieler \texttt{player} entsprechend der für
@@ -2437,10 +2435,9 @@ Teilbäume eventuell früher abschneiden lassen.
 \subsubsection{\texorpdfstring{Implementierung
 \emph{$\alpha$-$\beta$-Pruning}}{Implementierung $\alpha$-$\beta$-Pruning}}\label{implementierung-ux3b1-ux3b2-pruning}}
 
-\hypertarget{hilfsfunktion-zum-fuxfcllen-der-transpositionstabelle-writecache}{%
-\paragraph{\texorpdfstring{Hilfsfunktion zum Füllen der
+\textbf{Hilfsfunktion zum Füllen der
 Transpositionstabelle
-\texttt{writeCache}}{Hilfsfunktion zum Füllen der Transpositionstabelle writeCache}}\label{hilfsfunktion-zum-fuxfcllen-der-transpositionstabelle-writecache}}
+\texttt{writeCache}}
 
 Die Hilfsfunktion \texttt{writeCache} legt den gegebenen Zustand
 \texttt{state} und Spieler \texttt{player} mit samt der errechneten
@@ -2464,10 +2461,9 @@ Spielfelder in der Transpositionstabelle gespeichert.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{hilfsfunktion-zum-abgleich-mit-der-transpositionstabelle-value}{%
-\paragraph{\texorpdfstring{Hilfsfunktion zum Abgleich mit der
+\textbf{Hilfsfunktion zum Abgleich mit der
 Transpositionstabelle
-\texttt{value}}{Hilfsfunktion zum Abgleich mit der Transpositionstabelle value}}\label{hilfsfunktion-zum-abgleich-mit-der-transpositionstabelle-value}}
+\texttt{value}}
 
 Die \texttt{value} Funktion ist ein Wrapper für die eigentliche
 Implementierung des \emph{$\alpha$-$\beta$-Pruning} in der Funktion
@@ -2515,10 +2511,9 @@ ein Zähler erhöht.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{funktion-zur-berechnung-des-wertes-eines-spielzustands-alphabeta}{%
-\paragraph{\texorpdfstring{Funktion zur Berechnung des Wertes eines
+\textbf{Funktion zur Berechnung des Wertes eines
 Spielzustands
-\texttt{alphaBeta}}{Funktion zur Berechnung des Wertes eines Spielzustands alphaBeta}}\label{funktion-zur-berechnung-des-wertes-eines-spielzustands-alphabeta}}
+\texttt{alphaBeta}}
 
 Die Funktion \texttt{alphaBeta} beinhaltet nun die eigentliche
 Implementierung des \emph{$\alpha$-$\beta$-Pruning}.
@@ -2569,9 +2564,8 @@ Implementierung des \emph{$\alpha$-$\beta$-Pruning}.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{funktion-zur-auswahl-des-bestmuxf6glichen-zuges-bestmoves}{%
-\paragraph{\texorpdfstring{Funktion zur Auswahl des bestmöglichen Zuges
-\texttt{bestMoves}}{Funktion zur Auswahl des bestmöglichen Zuges bestMoves}}\label{funktion-zur-auswahl-des-bestmuxf6glichen-zuges-bestmoves}}
+\textbf{Funktion zur Auswahl des bestmöglichen Zuges
+\texttt{bestMoves}}
 
 Die Funktion \texttt{bestMoves} berechnet rekursiv den geschätzten Wert
 aller möglichen Züge für einen Spieler \texttt{player} und wählt die
