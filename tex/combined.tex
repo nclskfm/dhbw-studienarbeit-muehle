@@ -155,7 +155,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{nmm-alpha-beta-pruning}
+    \title{Studienarbeit zur Erstellung einer künstlichen Intelligenz zum Spielen des Brettspiels Mühle}
     
     
     
@@ -379,10 +379,8 @@
     
 
     
-    \hypertarget{studienarbeit-zur-erstellung-einer-kuxfcnstlichen-intelligenz-zum-spielen-des-brettspiels-muxfchle}{%
-\section{Studienarbeit zur Erstellung einer künstlichen Intelligenz zum
-Spielen des Brettspiels
-Mühle}\label{studienarbeit-zur-erstellung-einer-kuxfcnstlichen-intelligenz-zum-spielen-des-brettspiels-muxfchle}}
+    \hypertarget{einleitung}{%
+\section{Einleitung}\label{einleitung}}
 
 Im Rahmen dieser Studienarbeit wird eine künstliche Intelligenz
 entwickelt, die das Brettspiel Mühle spielen kann. Dafür werden die
@@ -393,8 +391,8 @@ Kaufmann im dritten Studienjahr des Bachelorstudiengangs
 \emph{Angewandte Informatik} im Kurs TINF18AI2 angefertigt. Der Betreuer
 der Studienarbeit ist Prof.~Dr.~Karl Stroetmann.
 
-    \hypertarget{einleitung}{%
-\subsection{Einleitung}\label{einleitung}}
+    \hypertarget{muehle}{%
+\subsection{Mühle}\label{muehle}}
 
 Mühle ist ein Brettspiel für zwei Personen. Das Spielbrett besteht aus
 drei Quadraten, die in den Seitenmitten verbunden sind. Jeder Spieler
@@ -435,26 +433,25 @@ direkt erklärt werden. Zum Lesen der Studienarbeit wird folgende
 Lesereihenfolge empfohlen:
 
 \hypertarget{nmm-game-utils.ipynb}{%
-\subsubsection{1. nmm-game-utils.ipynb}\label{nmm-game-utils.ipynb}}
+\subsubsection{nmm-game-utils.ipynb}\label{nmm-game-utils.ipynb}}
 
 Dieses Notebook beschreibt Hilfsfunktionen, die für die allgemeine
 Mühle-Implementierung benötigt werden.
 
 \hypertarget{nmm-game.ipynb}{%
-\subsubsection{2. nmm-game.ipynb}\label{nmm-game.ipynb}}
+\subsubsection{nmm-game.ipynb}\label{nmm-game.ipynb}}
 
 In diesem Notebook wird das Spiel Mühle implementiert.
 
 \hypertarget{nmm-artificial-intelligence.ipynb}{%
-\subsubsection{3.
-nmm-artificial-intelligence.ipynb}\label{nmm-artificial-intelligence.ipynb}}
+\subsubsection{nmm-artificial-intelligence.ipynb}\label{nmm-artificial-intelligence.ipynb}}
 
 Dieses Notebook implementiert eine abstrake Superklasse
 \texttt{ArtificialIntelligence}, um die Implementierung von
 \emph{Minimax} und \emph{$\alpha$-$\beta$-Pruning} zu vereinheitlichen.
 
 \hypertarget{nmm-heuristic.ipynb}{%
-\subsubsection{4. nmm-heuristic.ipynb}\label{nmm-heuristic.ipynb}}
+\subsubsection{nmm-heuristic.ipynb}\label{nmm-heuristic.ipynb}}
 
 Falls die maximale Suchtiefe erreicht wird und der betrachtete Zustand
 das Spiel nicht beendet, muss der Wert des Zustandes geschätzt werden.
@@ -462,38 +459,37 @@ Diesen Wert schätzt eine Heuristik, die in diesem Notebook implementiert
 wird.
 
 \hypertarget{nmm-symmetry.ipynb}{%
-\subsubsection{5. nmm-symmetry.ipynb}\label{nmm-symmetry.ipynb}}
+\subsubsection{nmm-symmetry.ipynb}\label{nmm-symmetry.ipynb}}
 
 Dieses Notebook definiert die verschiedenen Symmetrien, die für ein
 Spielbrett erkannt werden sollen.
 
 \hypertarget{nmm-minimax.ipynb}{%
-\subsubsection{6. nmm-minimax.ipynb}\label{nmm-minimax.ipynb}}
+\subsubsection{nmm-minimax.ipynb}\label{nmm-minimax.ipynb}}
 
 In diesem Notebook wird der erste Algorithmus \emph{Minimax}
 implementiert.
 
 \hypertarget{nmm-alpha-beta-pruning.ipynb}{%
-\subsubsection{7.
-nmm-alpha-beta-pruning.ipynb}\label{nmm-alpha-beta-pruning.ipynb}}
+\subsubsection{nmm-alpha-beta-pruning.ipynb}\label{nmm-alpha-beta-pruning.ipynb}}
 
 Der Algorithmus \emph{$\alpha$-$\beta$-Pruning} wird in diesem Notebook beschrieben
 und entwickelt.
 
 \hypertarget{nmm-gui-utils.ipynb}{%
-\subsubsection{8. nmm-gui-utils.ipynb}\label{nmm-gui-utils.ipynb}}
+\subsubsection{nmm-gui-utils.ipynb}\label{nmm-gui-utils.ipynb}}
 
 Dieses Notebook beschreibt Hilfsfunktionen, die für das Zeichnen der
 graphischen Oberfläche und Spielen in dieser benötigt werden.
 
 \hypertarget{nmm-gui.ipynb}{%
-\subsubsection{9. nmm-gui.ipynb}\label{nmm-gui.ipynb}}
+\subsubsection{nmm-gui.ipynb}\label{nmm-gui.ipynb}}
 
 Das Spielen in der graphischen Oberfläche wird in diesem Notebook
 implementiert.
 
 \hypertarget{nmm-tournament.ipynb}{%
-\subsubsection{10. nmm-tournament.ipynb}\label{nmm-tournament.ipynb}}
+\subsubsection{nmm-tournament.ipynb}\label{nmm-tournament.ipynb}}
 
 Um eine Analyse der beiden Algorithmen \emph{Minimax} und
 \emph{$\alpha$-$\beta$-Pruning} und verschiedener Heuristiken durchführen zu können,
@@ -503,7 +499,7 @@ automatisch gegeneinander spielen können und die Spielverläufe und
 Ergebnisse aufgezeichnet werden.
 
 \hypertarget{nmm-conclusion.ipynb}{%
-\subsubsection{11. nmm-conclusion.ipynb}\label{nmm-conclusion.ipynb}}
+\subsubsection{nmm-conclusion.ipynb}\label{nmm-conclusion.ipynb}}
 
 Zum Abschluss der Studienarbeit wird das Turnier aus dem vorherigen
 Notebook gespielt und die Algorithmen und Heuristiken ausgewertet. In
@@ -1198,9 +1194,12 @@ die in einem eigenen Kapitel beschrieben werden.
 
 Zunächst soll die Menge der Spieler definiert werden. Da Mühle mit zwei
 Spielern gespielt wird, die jeweils weiße oder schwarze Steine legen,
-werden die Spieler äquivalent benannt. * Der beginnende Spieler weiß
-wird als \texttt{w} dargestellt, * der gegnerische Spieler als
-\texttt{b}.
+werden die Spieler äquivalent benannt.
+
+\begin{itemize}
+    \item Der beginnende Spieler weiß wird als \texttt{w} dargestellt,
+    \item der gegnerische Spieler als \texttt{b}.
+\end{itemize}
 
 Für die Implementierung der Funktionen ist diese Menge nicht nötig. Aus
 Gründen der Vollständigkeit soll diese hier dennoch definiert werden.
@@ -1251,11 +1250,15 @@ der unteren rechten Ecke. An diesen Spielpositionen wird der Spieler
 \(p \in Player \cup \{'\ '\}\).
 
 So ist ein State eine Tupel \(\langle stash, board \rangle\) dessen
-Parameter * \texttt{stash} eine weitere Tupel, bestehend aus
-\(\langle w, b \rangle\) und * \texttt{board} eine Tripel, welche die
-Ringe \(r_0\), \(r_1\) und \(r_2\) beinhaltet. Die Ringe selbst sind
-Neun-Tupel, dessen Elemente die einzelnen Spielpositionen
-\(c \in Player \cup \{'\ '\}\) darstellen.
+Parameter 
+
+\begin{itemize}
+    \item \texttt{stash} eine weitere Tupel, bestehend aus \(\langle w, b \rangle\) und
+    \item \texttt{board} eine Tripel, welche die
+    Ringe \(r_0\), \(r_1\) und \(r_2\) beinhaltet. Die Ringe selbst sind
+    Neun-Tupel, dessen Elemente die einzelnen Spielpositionen
+    \(c \in Player \cup \{'\ '\}\) darstellen.
+\end{itemize}
 
 Der Startzustand \(s_0\) wird in Python wie folgt geschrieben:
 
@@ -1280,22 +1283,28 @@ diesen alle Folgezustände, die entstehen, wenn der gegebene Spieler
 einen legalen Zug spielt.
 
 Da das Spiel in drei Phasen aufgeteilt ist, ist auch die Implementierung
-aus Gründen der Übersicht in die folgenden Phasen unterteilt: 1. Die
-erste Phase des Spiels heißt \emph{placing} Phase, in der die Spieler
-alle ihre Steine aus dem Stapel auf das Spielbrett legen müssen. Hierbei
-dürfen bereits Mühlen gelegt und geschlagen werden. Es muss ein Stein
-platziert werden. 2. Die zweite Phase heißt \emph{moving} Phase und
-beginnt sobald der Stapel des Spielers leer ist. Beide Spieler kommen
-gleichzeitig in die zweite Phase, in der die eigenen Steine nur noch
-entlang der Linien auf die nächste Spielposition geschoben werden
-dürfen. Es muss ein Stein bewegt werden. 3. Die letzte Phase heißt
-\emph{flying} Phase. Diese Phase beginnt für einen Spieler, sobald
-dieser nur noch \(3\) Steine auf dem Spielbrett liegen hat und sein
-Stapel leer ist. Der Eintritt in die dritte Phase ist nicht vom
-gegnerischen Spieler abhängig, somit können Spieler für mehrere Züge
-alleine in der dritten Phase sein. Hierbei können die verbleibenden
-Steine beliebig bewegt werden, ohne dass die Positionen direkt
-nebeneinander liegen müssen. Es muss ein Stein bewegt werden.
+aus Gründen der Übersicht in die folgenden Phasen unterteilt:
+
+\begin{enumerate}
+    \item Die
+    erste Phase des Spiels heißt \emph{placing} Phase, in der die Spieler
+    alle ihre Steine aus dem Stapel auf das Spielbrett legen müssen. Hierbei
+    dürfen bereits Mühlen gelegt und geschlagen werden. Es muss ein Stein
+    platziert werden.
+    \item Die zweite Phase heißt \emph{moving} Phase und
+    beginnt sobald der Stapel des Spielers leer ist. Beide Spieler kommen
+    gleichzeitig in die zweite Phase, in der die eigenen Steine nur noch
+    entlang der Linien auf die nächste Spielposition geschoben werden
+    dürfen. Es muss ein Stein bewegt werden.
+    \item Die letzte Phase heißt
+    \emph{flying} Phase. Diese Phase beginnt für einen Spieler, sobald
+    dieser nur noch \(3\) Steine auf dem Spielbrett liegen hat und sein
+    Stapel leer ist. Der Eintritt in die dritte Phase ist nicht vom
+    gegnerischen Spieler abhängig, somit können Spieler für mehrere Züge
+    alleine in der dritten Phase sein. Hierbei können die verbleibenden
+    Steine beliebig bewegt werden, ohne dass die Positionen direkt
+    nebeneinander liegen müssen. Es muss ein Stein bewegt werden.
+\end{enumerate}
 
 In der ersten Phase, der \emph{placing} Phase, wird ein Stein vom Stapel
 genommen und auf ein freies Feld gelegt. Diese Züge werden in der
@@ -1500,9 +1509,9 @@ Fallunterscheidung ausgeführt, sodass gilt
 
 \[
 nextStates(s, p) = \begin{cases}
-nextStatesPlace(s, p) & falls & playerPhase(s, p) = 1 \\
-nextStatesMove(s, p) & falls & playerPhase(s, p) = 2 \\
-nextStatesFly(s, p) & falls & playerPhase(s, p) = 3
+nextStatesPlace(s, p) & falls\ \  playerPhase(s, p) = 1 \\
+nextStatesMove(s, p) & falls\ \  playerPhase(s, p) = 2 \\
+nextStatesFly(s, p) & falls\ \  playerPhase(s, p) = 3
 \end{cases}
 \]
 
@@ -1529,9 +1538,14 @@ zwei weitere Funktionen benötigt, die das Ende des Spiels behandeln:
 
 Die Funktion \texttt{finished} errechnet für einen gegebenen Zustand
 \texttt{s}, ob das Spiel beendet ist, wenn Spieler \texttt{p} an der
-Reihe ist. Dies ist der Fall, g.d.w. * einer der Spieler
-\(p \in Players\) weniger als 3 Steine hat (\texttt{hasEnoughStones})
-oder * der Spieler \texttt{p} keinen legalen Zug mehr tätigen kann.
+Reihe ist. Dies ist der Fall, g.d.w.
+
+\begin{itemize}
+    \item einer der Spieler
+    \(p \in Players\) weniger als 3 Steine hat (\texttt{hasEnoughStones})
+    oder
+    \item der Spieler \texttt{p} keinen legalen Zug mehr tätigen kann.
+\end{itemize}
 
 Der optionale Parameter \texttt{ns} ist lediglich eine Optimierung, die
 es ermöglicht, bereits berechnete Folgezustände zu verwenden, anstatt
@@ -1555,9 +1569,9 @@ wer gewonnen hat.
 
 \[
 utility(s, p) = \begin{cases}
--1 & falls & p \ verliert \ in \ s \\
- 0 & falls & Unentschieden         \\
- 1 & falls & p \ gewinnt  \ in \ s
+-1 & falls\ \  p \ verliert \ in \ s \\
+ 0 & falls\ \  Unentschieden         \\
+ 1 & falls\ \  p \ gewinnt  \ in \ s
 \end{cases}
 \]
 
@@ -1778,16 +1792,18 @@ herauszufinden welche Heuristik den Wert eines Zustandes am genausten
 abbildet.
 
 Eine Instanz der Klasse \texttt{HeuristicWeights} besteht aus vier
-Gewichtungen, eine für jede Eigenschaft: * \texttt{stones}: Diese
-Eigenschaft zählt, wie viele Steine der Spieler auf dem Spielbrett hat.
-* \texttt{stash}: Die Steine auf dem Stapel werden ebenfalls gezählt. *
-\texttt{mills}: Die Anzahl der Mühlen, die ein Spieler auf dem
-Spielbrett hat, wird durch diese Eigenschaft gezählt. *
-\texttt{possible\_mills}: Die Anzahl der möglichen Mühlen, dh. Mühlen
-bei denen eine Zelle noch frei ist, werden ebenfalls gezählt. (Siehe
-\texttt{findPossibleMills} im Kapitel \emph{Hilfsfunktionen für die
-Spielimplementierung} für eine genauere Beschreibung einer möglichen
-Mühle.)
+Gewichtungen, eine für jede Eigenschaft:
+
+\begin{itemize}
+    \item \texttt{stones}: Diese Eigenschaft zählt, wie viele Steine der Spieler auf dem Spielbrett hat.
+    \item \texttt{stash}: Die Steine auf dem Stapel werden ebenfalls gezählt.
+    \item \texttt{mills}: Die Anzahl der Mühlen, die ein Spieler auf dem Spielbrett hat, wird durch diese Eigenschaft gezählt.
+    \item \texttt{possible\_mills}: Die Anzahl der möglichen Mühlen, dh. Mühlen
+    bei denen eine Zelle noch frei ist, werden ebenfalls gezählt. (Siehe
+    \texttt{findPossibleMills} im Kapitel \emph{Hilfsfunktionen für die
+    Spielimplementierung} für eine genauere Beschreibung einer möglichen
+    Mühle.)
+\end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1953,10 +1969,14 @@ kommt die Rotation zustande.
     \hypertarget{spiegelung}{%
 \subsection{Spiegelung}\label{spiegelung}}
 
-Bei den Spiegelungen wird an vier Achsen gespiegelt: * die
-\emph{horizontale} und \emph{vertikale} Achse, sowie * die Diagonale von
-oben links nach unten rechts (\emph{negative Diagonale}) und die
-Diagonale von unten links nach oben rechts (\emph{positive Diagnonale}).
+Bei den Spiegelungen wird an vier Achsen gespiegelt:
+
+\begin{itemize}
+    \item die \emph{horizontale} und \emph{vertikale} Achse, sowie
+    \item die Diagonale von
+    oben links nach unten rechts (\emph{negative Diagonale}) und die
+    Diagonale von unten links nach oben rechts (\emph{positive Diagnonale}).
+\end{itemize}
 
 Diese Spiegelungen können einzelnd pro Ring vorgenommen werden, da der
 äußere Ring bleibt nach der Spiegelung weiterhin der äußere Ring.
@@ -2120,7 +2140,7 @@ werden.
 \end{tcolorbox}
 
     \hypertarget{minimax}{%
-\subsection{Minimax}\label{minimax}}
+\section{Minimax}\label{minimax}}
 
 Der \emph{Minimax} Algorithmus bietet eine einfache Möglichkeit, um den
 perfekten Spielzug in einem Nullsummenspiel zu berechnen. Um diesen zu
@@ -2232,9 +2252,10 @@ maximal zu erreichenden Wert \texttt{value} gesucht. Zusammengefasst
 bedeutet das für die Funktion:
 
 \[ value(state, player, limit) = \begin{cases}
-utility(state, player) & falls & finished(state, player) = true \\
-heuristic(state, player) & falls & limit = 0 \\
-max(-value(ns, \neg{player}, limit))  \forall  ns \in nextStates(state, player) & sonst
+utility(state, player) & falls\ \ finished(state, player) = true \\
+heuristic(state, player) & falls\ \ limit = 0 \\
+max(-value(ns, \neg{player}, limit)) \\
+\forall  ns \in nextStates(state, player) & sonst
 \end{cases}
 \]
 
@@ -2261,13 +2282,16 @@ Rekursionstiefe \texttt{limit} mit dem gegebenen Ausgangszustand
 \texttt{state} gesucht.
 
 Zusätzlich werden Informationen gesammelt, die die genaueren Abläufe im
-Algorithmus abbilden: * \texttt{runtime} ist die Rechendauer der
-Funktion in Sekunden; * \texttt{limit} beschreibt die verwendete
-maximale Rekursionstiefe; * \texttt{cache\_hit} ist die Anzahl der
-Berechnungen, die durch die Transpositionstabelle (\texttt{cache})
-eingespart werden konnten; * \texttt{cache\_miss} hingegen ist die
-Anzahl der Berechnungen, die trotz der Transpositionstablle durchgeführt
-werden mussten.
+Algorithmus abbilden:
+
+\begin{itemize}
+    \item \texttt{runtime} ist die Rechendauer der Funktion in Sekunden;
+    \item \texttt{limit} beschreibt die verwendete maximale Rekursionstiefe;
+    \item \texttt{cache\_hit} ist die Anzahl der Berechnungen, die durch die Transpositionstabelle (\texttt{cache}) eingespart werden konnten;
+    \item \texttt{cache\_miss} hingegen ist die
+    Anzahl der Berechnungen, die trotz der Transpositionstablle durchgeführt
+    werden mussten.
+\end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -2316,7 +2340,7 @@ werden mussten.
 
     
     \hypertarget{ux3b1-ux3b2-pruning}{%
-\subsection{$\alpha$-$\beta$-Pruning}\label{ux3b1-ux3b2-pruning}}
+\section{$\alpha$-$\beta$-Pruning}\label{ux3b1-ux3b2-pruning}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -2648,18 +2672,17 @@ aus den erhaltenen Zuständen die Zustände mit dem besten Wert ausgewählt
 und zurückgegeben.
 
 Zusätzlich werden Informationen gesammelt, die die genaueren Abläufe im
-Algorithmus abbilden: * \texttt{runtime} ist die Rechendauer der
-Funktion in Sekunden; * \texttt{limit} ist die erreichte maximale
-Rekursionstiefe; * \texttt{visited} ist die Anzahl der besuchten
-Zustände; * \texttt{max\_states} ist die Anzahl der maximal zu
-besuchenden Zustände; * \texttt{cache\_hit} ist die Anzahl der
-Berechenungen, die durch die Tanspositionstabelle (\texttt{cache})
-eingespart werden konnten; * \texttt{cache\_invalid} ist die Anzahl der
-Berechnungen, die durchgeführt werden mussten, da der in der
-Transpositionstabelle vorhandene Wert nicht zu verwenden war; *
-\texttt{cache\_miss} ist die Anzahl der Berechnungen, die trotz der
-Transpositionstabelle durchgeführt werden mussten, da kein Eintrag
-gefunden wurde.
+Algorithmus abbilden:
+
+\begin{itemize}
+    \item \texttt{runtime} ist die Rechendauer der Funktion in Sekunden;
+    \item \texttt{limit} ist die erreichte maximale Rekursionstiefe;
+    \item \texttt{visited} ist die Anzahl der besuchten Zustände;
+    \item \texttt{max\_states} ist die Anzahl der maximal zu besuchenden Zustände;
+    \item \texttt{cache\_hit} ist die Anzahl der Berechenungen, die durch die Tanspositionstabelle (\texttt{cache}) eingespart werden konnten;
+    \item \texttt{cache\_invalid} ist die Anzahl der Berechnungen, die durchgeführt werden mussten, da der in der Transpositionstabelle vorhandene Wert nicht zu verwenden war;
+    \item \texttt{cache\_miss} ist die Anzahl der Berechnungen, die trotz der Transpositionstabelle durchgeführt werden mussten, da kein Eintrag gefunden wurde.    
+\end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -2848,10 +2871,11 @@ Abbildung sind diese genauer erklärt.
     \hypertarget{text}{%
 \subsubsection{Text}\label{text}}
 
-In der GUI gibt es drei verschiedene Textarten: - Spielnachricht (wer
-spielt gerade oder ob das Spiel beendet ist), - Hinweise (falls zum
-Beispiel eine ungültige Aktion ausgeführt worden ist) und -
-Informationen über den letzten Zug der künstlichen Intelligenz.
+In der GUI gibt es drei verschiedene Textarten:
+\begin{itemize}
+    \item Spielnachricht (wer spielt gerade oder ob das Spiel beendet ist),
+    \item Hinweise (falls zum Beispiel eine ungültige Aktion ausgeführt worden ist) und - Informationen über den letzten Zug der künstlichen Intelligenz.
+\end{itemize}
 
 Diese Textarten haben eine eigene Schriftart, -größe und -farbe.
 
@@ -3478,12 +3502,13 @@ zwischen zwei Zuständen. Die Funktion hat drei Argumente:
 \end{itemize}
 
 Die Funktion gibt ein Zwei-Tupel der Form
-\texttt{\textless{}movedStone,\ poundedStones\textgreater{}} mit -
-\texttt{movedStone} ist die Koordinate des bewegten Steins des Spielers;
-- \texttt{poundedStones} ist eine Menge von Zwei-Tupeln der Form
-\texttt{\textless{}op,\ coord\textgreater{}} mit - \texttt{op} ist der
-Gegenspieler; - \texttt{coord} ist die Koordinate des geschlagenden
-Steines;
+\texttt{\textless{}movedStone,\ poundedStones\textgreater{}} mit
+\begin{enumerate}
+    \item \texttt{movedStone} ist die Koordinate des bewegten Steins des Spielers;
+    \item \texttt{poundedStones} ist eine Menge von Zwei-Tupeln der Form \texttt{\textless{}op,\ coord\textgreater{}} mit
+    \item \texttt{op} ist der Gegenspieler;
+    \item \texttt{coord} ist die Koordinate des geschlagenden Steines;
+\end{enumerate}
 
 zurück.
 
@@ -3551,37 +3576,18 @@ Die Klasse \texttt{GameState} dient zum Spielen und Verwalten von einem
 Mühle-Spiel in der GUI.
 
 Der Konstruktur der Klasse hat elf Eingabeparameter, die alle optional
-sind: - \texttt{state} ist der Startzustand für das Spiel. Standardmäßig
-wird das Spiel mit \texttt{s0} gestartet, welches ein leeres Spielfeld
-darstellt; - \texttt{player} definiert den Spieler, der den ersten Zug
-spielt. Standardmäßig wird das Spiel mit dem weißen Spieler (\texttt{w})
-gestartet; - \texttt{algorithm1} definiert, ob und welcher Algorithmus
-für den weißen Spieler spielt. Standardmäßig wird der Spieler von einem
-Menschen gespielt (\texttt{None}). Für \emph{$\alpha$-$\beta$-Pruning} ist eine
-Instanz der Klasse \texttt{AlphaBetaPruning} zu übergeben und für
-\emph{Minimax} eine Instanz der Klasse \texttt{Minimax}. -
-\texttt{algorithm2} definiert, ob und welcher Algorithmus für den
-schwarzen Spieler spielt. Standardmäßig wird der Spieler von einem
-Menschen gespielt (\texttt{None}). Für \emph{$\alpha$-$\beta$-Pruning} ist eine
-Instanz der Klasse \texttt{AlphaBetaPruning} zu übergeben und für
-\emph{Minimax} eine Instanz der Klasse \texttt{Minimax}. -
-\texttt{timeout} definiert einen Timeout in Sekunden, der nach einem
-Computer-Zug gesetzt wird. Dies dient dazu, die Übersichtlichkeit zu
-erhöhen, wenn Computer gegen Computer spielt. Standardmäßig gibt es
-keinen Timeout (\texttt{None}); - \texttt{stepwise} ist ein boolischer
-Wert und gibt an, ob das Spiel bei Computer gegen Computer im
-Einzelschrittmodus gespielt wird. Das bedeutet, nach jedem Computerzug
-muss der nächste Computerzug manuell begonnen werden. Standardmäßig ist
-der Einzelschrittmodus deaktiviert (\texttt{False}); -
-\texttt{limitMovesWithoutMill} ist eine Ganzzahl, die angibt, wie viele
-Züge ohne geschlagende Mühle gespielt werden können. Ist das Limit
-überschritten, endet das Spiel in einem Unentschieden. Der Standardwert
-ist \texttt{30}. Um dieses Limit auszuschalten, muss der Wert auf
-\texttt{None} gesetzt werden; - \texttt{limitStatesCounter} ist eine
-Ganzzahl, die angibt, wie oft ein gleicher Zustand gespielt werden kann.
-Ist das Limit überschritten, endet das Spiel in einem Unentschieden. Der
-Standardwert ist \texttt{5}. Um dieses Limit auszuschalten, muss der
-Wert auf \texttt{None} gesetzt werden;
+sind:
+\begin{itemize}
+    \item \texttt{state} ist der Startzustand für das Spiel. Standardmäßig wird das Spiel mit \texttt{s0} gestartet, welches ein leeres Spielfeld darstellt;
+    \item \texttt{player} definiert den Spieler, der den ersten Zug spielt. Standardmäßig wird das Spiel mit dem weißen Spieler (\texttt{w}) gestartet;
+    \item \texttt{algorithm1} definiert, ob und welcher Algorithmus für den weißen Spieler spielt. Standardmäßig wird der Spieler von einem Menschen gespielt (\texttt{None}). Für \emph{$\alpha$-$\beta$-Pruning} ist eine Instanz der Klasse \texttt{AlphaBetaPruning} zu übergeben und für \emph{Minimax} eine Instanz der Klasse \texttt{Minimax}.
+    \item \texttt{algorithm2} definiert, ob und welcher Algorithmus für den schwarzen Spieler spielt. Standardmäßig wird der Spieler von einem Menschen gespielt (\texttt{None}). Für \emph{$\alpha$-$\beta$-Pruning} ist eine Instanz der Klasse \texttt{AlphaBetaPruning} zu übergeben und für \emph{Minimax} eine Instanz der Klasse \texttt{Minimax}.
+    \item \texttt{timeout} definiert einen Timeout in Sekunden, der nach einem Computer-Zug gesetzt wird. Dies dient dazu, die Übersichtlichkeit zu erhöhen, wenn Computer gegen Computer spielt. Standardmäßig gibt es keinen Timeout (\texttt{None});
+    \item \texttt{stepwise} ist ein boolischer Wert und gibt an, ob das Spiel bei Computer gegen Computer im Einzelschrittmodus gespielt wird. Das bedeutet, nach jedem Computerzug muss der nächste Computerzug manuell begonnen werden. Standardmäßig ist der Einzelschrittmodus deaktiviert (\texttt{False});
+    \item \texttt{limitMovesWithoutMill} ist eine Ganzzahl, die angibt, wie viele Züge ohne geschlagende Mühle gespielt werden können. Ist das Limit überschritten, endet das Spiel in einem Unentschieden. Der Standardwert ist \texttt{30}. Um dieses Limit auszuschalten, muss der Wert auf \texttt{None} gesetzt werden;
+    \item \texttt{limitStatesCounter} ist eine Ganzzahl, die angibt, wie oft ein gleicher Zustand gespielt werden kann. Ist das Limit überschritten, endet das Spiel in einem Unentschieden. Der Standardwert ist \texttt{5}. Um dieses Limit auszuschalten, muss der Wert auf \texttt{None} gesetzt werden;
+
+\end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -4299,27 +4305,28 @@ einziges Spiel zwischen zwei Teilnehmern darstellt. Der Konstruktor der
 Klasse erwartet zwei verpflichtende Argumente und sechs optionale
 Argumente:
 
-Verpflichtend: * \texttt{white} ist eine Instanz einer
-\texttt{ArtificialIntelligence}, die den weißen Spieler spielen wird; *
-\texttt{black} ist eine Instanz einer \texttt{ArtificialIntelligence},
-die den schwarzen Spieler spielen wird;
+Verpflichtend:
+\begin{itemize}
+    \item \texttt{white} ist eine Instanz einer \texttt{ArtificialIntelligence}, die den weißen Spieler spielen wird;
+    \item \texttt{black} ist eine Instanz einer \texttt{ArtificialIntelligence}, die den schwarzen Spieler spielen wird;
+\end{itemize}
 
-Optional: * \texttt{start\_state} ist der Startzustand, der verwendet
-werden soll, standardmäßig \texttt{s0}; * \texttt{start\_player} ist der
-Spieler, der das Spiel beginnen soll, standardmäig \texttt{w}; *
-\texttt{max\_turns} ist die maximale Anzahl an Zügen, die das Spiel
-dauern darf, bevor es in einem Remis endet, standardmäßig \texttt{250};
-* \texttt{max\_state\_replayed} ist die maximale Anzahl die ein Zug
-nochmal gespielt werden darf, bevor das Spiel in einem Remis endet,
-standardmäßig \texttt{5}; * \texttt{max\_states\_without\_mill} ist die
-maximale Anzahl von aufeinanderfolgenden Zügen in denen kein Stein
-geschlagen wurde, bevor das Spiel in einem Remis endet, standardmäßig
-\texttt{30}; * \texttt{name} ein optionaler Name für das Spiel.
+Optional:
+\begin{itemize}
+    \item \texttt{start\_state} ist der Startzustand, der verwendet werden soll, standardmäßig \texttt{s0};
+    \item \texttt{start\_player} ist der Spieler, der das Spiel beginnen soll, standardmäig \texttt{w};
+    \item \texttt{max\_turns} ist die maximale Anzahl an Zügen, die das Spiel dauern darf, bevor es in einem Remis endet, standardmäßig \texttt{250};
+    \item \texttt{max\_state\_replayed} ist die maximale Anzahl die ein Zug nochmal gespielt werden darf, bevor das Spiel in einem Remis endet, standardmäßig \texttt{5};
+    \item \texttt{max\_states\_without\_mill} ist die maximale Anzahl von aufeinanderfolgenden Zügen in denen kein Stein geschlagen wurde, bevor das Spiel in einem Remis endet, standardmäßig \texttt{30};
+    \item \texttt{name} ein optionaler Name für das Spiel.
+\end{itemize}
 
 Des Weiteren werden zwei Attribute initialisiert, die für den
-Spielverlauf nötig sind: * \texttt{log} der Verlauf aller Zustände; *
-\texttt{no\_mill\_played} die Anzahl der letzten Züge ohne eine neue
-Mühle.
+Spielverlauf nötig sind:
+\begin{itemize}
+    \item \texttt{log} der Verlauf aller Zustände;
+    \item \texttt{no\_mill\_played} die Anzahl der letzten Züge ohne eine neue Mühle.
+\end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -4374,10 +4381,12 @@ Transpositionstabellen gelöscht werden und der RAM wieder frei gegeben
 werden.
 
 Ein \texttt{MatchResult} besteht aus drei Attributen, die im Konstruktor
-gesetzt werden müssen: * \texttt{winner} \(\in Player \cup \{'\ '\}\),
-der Gewinner (oder Remis) des Spieles; * \texttt{log} ist die
-chronologische Liste aller gespielen Zustände; * \texttt{reason} eine
-Zeichenkette die genauer beschreibt warum das Spiel endete.
+gesetzt werden müssen:
+\begin{itemize}
+    \item \texttt{winner} \(\in Player \cup \{'\ '\}\), der Gewinner (oder Remis) des Spieles;
+    \item \texttt{log} ist die chronologische Liste aller gespielen Zustände;
+    \item \texttt{reason} eine Zeichenkette die genauer beschreibt warum das Spiel endete.
+\end{itemize}
 
 Für Entwicklungszwecke wird hier ebenfalls eine Stringdarstellung für
 die Klasse \texttt{MatchResult} implementiert. Hierzu wird durch die
@@ -4417,11 +4426,13 @@ KI-Instanz zurück, die gerade am Zug ist.
     Die Hilfsfunktion \texttt{check\_remis} überprüft, ob der aktuelle
 Zustand und Spieler zu einem Remis führen. Ist dies der Fall, wird ein
 entsprechendes \texttt{MatchResult} mit Begründung, ansonsten
-\texttt{None}, zurückgegeben. Gründe für ein Remis sind: * die maximale
-Anzahl an Zügen wurde gespielt - \texttt{max\_turns}; * ein Zug wurde
-öfter als maximal erlaubt gespielt - \texttt{max\_state\_replayed}; *
-die maximale Anzahl an Zügen ohne eine neue Mühle wurde gespielt -
-\texttt{max\_states\_without\_mill}.
+\texttt{None}, zurückgegeben. Gründe für ein Remis sind:
+
+\begin{itemize}
+    \item die maximale Anzahl an Zügen wurde gespielt - \texttt{max\_turns};
+    \item ein Zug wurde öfter als maximal erlaubt gespielt - \texttt{max\_state\_replayed};
+    \item die maximale Anzahl an Zügen ohne eine neue Mühle wurde gespielt - \texttt{max\_states\_without\_mill}.
+\end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -4522,13 +4533,13 @@ Prozess startet.
 \end{tcolorbox}
 
     Die Klasse \texttt{Round} spiegelt solch eine Runde wieder und besitzt
-drei Parameter im Konstruktor: * \texttt{white} ist eine Instanz oder
-eine Funktion die eine \texttt{ArtificialIntelligence} produziert, die
-den weißen Spieler spielt; * \texttt{black} ist eine Instanz oder eine
-Funktion die eine \texttt{ArtificialIntelligence} produziert, die den
-schwarzen Spieler spielt; * \texttt{instances} ist die Anzahl der Spiele
-die gleichzeitig gestartet werden sollen; * \texttt{seed\_offset} ist
-die Zahl, die auf den Seed addiert werden soll.
+drei Parameter im Konstruktor:
+\begin{itemize}
+    \item \texttt{white} ist eine Instanz oder eine Funktion die eine \texttt{ArtificialIntelligence} produziert, die den weißen Spieler spielt;
+    \item \texttt{black} ist eine Instanz oder eine Funktion die eine \texttt{ArtificialIntelligence} produziert, die den schwarzen Spieler spielt;
+    \item \texttt{instances} ist die Anzahl der Spiele die gleichzeitig gestartet werden sollen;
+    \item \texttt{seed\_offset} ist die Zahl, die auf den Seed addiert werden soll.
+\end{itemize}
 
 Die Parameter \texttt{white} und \texttt{black} können auch Funktionen
 akzeptieren, damit sichergestellt werden kann, dass die Teilnehmer
@@ -4621,18 +4632,25 @@ verglichen werden können, wurde ein Tunier implementiert. Die Klasse
 \texttt{Tournament} erwartet einen verflichtenden und zwei optionale
 Parameter:
 
-Verpflichtend: * \texttt{participants} ist eine Liste an Teilnehmer
+Verpflichtend:
+\begin{itemize}
+\item \texttt{participants} ist eine Liste an Teilnehmer
 \texttt{ArtificialIntelligence} Instanzen oder Funktionen, die diese
 erzeugen;
+\end{itemize}
 
-Optional: * \texttt{instances\_per\_round} ist die Anzahl der Spiele die
-pro Runde und pro Teilnehmer Konstellation gespielt werden soll; *
-\texttt{name} ist ein Name, der den Log-Dateien angehängt wird; *
-\texttt{skip} ist die Anzahl der Runden, die übersprungen werden sollen.
+Optional:
+\begin{itemize}
+    \item \texttt{instances\_per\_round} ist die Anzahl der Spiele die
+pro Runde und pro Teilnehmer Konstellation gespielt werden soll;
+    \item \texttt{name} ist ein Name, der den Log-Dateien angehängt wird;
+    \item \texttt{skip} ist die Anzahl der Runden, die übersprungen werden sollen.
 Dies ist Hilfreich falls die Berechnungen abbrechen und fortgesetzt
-werden sollen; * \texttt{seed\_offset} ist die Zahl, die auf den Seed
+werden sollen;
+    \item \texttt{seed\_offset} ist die Zahl, die auf den Seed
 einer Runde addiert werden soll. So können Runden in Teilen ausgerechnet
 werden.
+\end{itemize}
 
 Pro Spiel können durch die Transpositionstabelle bis zu 6 Gigabyte an
 RAM benötigt werden. Dementsprechend wird empfohlen die
@@ -4661,10 +4679,16 @@ RAM benötigt werden. Dementsprechend wird empfohlen die
     Die Hilfsfunktion \texttt{save} speichert die Ergebnisse einer Runde in
 einer menschenlesbaren Datei, die nach dem Schema
 \texttt{round-NAME-ID.txt} benannt ist. Die Funktion erwartet drei
-Parameter: * \texttt{idx} ist die Nummer der aktuellen Runde (wird um
-eins erhöht, um eine natürliche Zählung zu verwenden); * \texttt{rnd}
-ist die aktuelle Runde; * \texttt{results} ist die Liste der Ergebnisse,
+Parameter:
+
+\begin{itemize}
+    \item \texttt{idx} ist die Nummer der aktuellen Runde (wird um
+eins erhöht, um eine natürliche Zählung zu verwenden); 
+    \item \texttt{rnd}
+ist die aktuelle Runde;
+    \item \texttt{results} ist die Liste der Ergebnisse,
 die gespeichert werden soll.
+\end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
