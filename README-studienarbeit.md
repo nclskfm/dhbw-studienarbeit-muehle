@@ -11,6 +11,7 @@ Als Grundlage dient das [Skript (Kapitel 4 *Playing Games*)](https://github.com/
 
 Folgende Notebooks sind Teil der Studienarbeit und sollten in der angegebenen Reihenfolge gelesen werden.
 
+* `nmm-introduction.ipynb`
 * `nmm-game-utils.ipynb`
 * `nmm-game.ipynb`
 * `nmm-artificial-intelligence.ipynb`
