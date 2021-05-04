@@ -21,3 +21,4 @@ Folgende Notebooks sind Teil der Studienarbeit und sollten in der angegebenen Re
 * `nmm-gui-utils.ipynb`
 * `nmm-gui.ipynb`
 * `nmm-tournament.ipynb`
+* `nmm-conclusion.ipynb`
