@@ -13,7 +13,7 @@ Da dieses Repository die Arbeit von einer Studienarbeit und zwei Hausarbeiten be
 **Autoren**: @nclskfm, @benfu99 und @jstsddg
 
 **Bewertungsgrundlage**:
-* **Notebooks**: [README-studienarbeit.md](jupyter/README-studienarbeit.md)
+* **Notebooks**: [README-studienarbeit.md](README-studienarbeit.md)
 * **git tag**: *ausstehend*
 * **PDF**: *ausstehend*
 
@@ -23,7 +23,7 @@ Da dieses Repository die Arbeit von einer Studienarbeit und zwei Hausarbeiten be
 **Autoren**: @nclskfm und @benfu99
 
 **Bewertungsgrundlage**:
-* **Notebooks**: [README-hausarbeit-retrograde-analysis.md](jupyter/README-hausarbeit-retrograde-analysis.md)
+* **Notebooks**: [README-hausarbeit-retrograde-analysis.md](README-hausarbeit-retrograde-analysis.md)
 * **git tag**: *ausstehend*
 * **PDF**: *ausstehend*
 
@@ -32,6 +32,6 @@ Da dieses Repository die Arbeit von einer Studienarbeit und zwei Hausarbeiten be
 **Autoren**: @r-franzke und @jstsddg
 
 **Bewertungsgrundlage**:
-* **Notebooks**: [README-hausarbeit-rote-learning.md](jupyter/README-hausarbeit-rote-learning.md)
+* **Notebooks**: [README-hausarbeit-rote-learning.md](README-hausarbeit-rote-learning.md)
 * **git tag**: *ausstehend*
 * **PDF**: *ausstehend*
