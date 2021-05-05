@@ -14,8 +14,8 @@ Da dieses Repository die Arbeit von einer Studienarbeit und zwei Hausarbeiten be
 
 **Bewertungsgrundlage**:
 * **Notebooks**: [README-studienarbeit.md](README-studienarbeit.md)
-* **git tag**: *ausstehend*
-* **PDF**: *ausstehend*
+* **git tag**: [studienarbeit](https://github.com/nclskfm/dhbw-studienarbeit-muehle/tree/studienarbeit)
+* **PDF**: [Studienarbeit.pdf](Studienarbeit.pdf)
 
 
 ## Hausarbeit: Retrograde Analysis
