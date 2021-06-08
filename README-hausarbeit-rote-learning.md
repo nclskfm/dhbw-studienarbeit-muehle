@@ -11,3 +11,4 @@ Diese Hausarbeit basiert auf dem Paper `Some Studies in Machine Learning Using t
 Folgende Notebooks sind Teil der Hausarbeit und sollten in der angegebenen Reihenfolge gelesen werden.
 
 * `nmm-cache.ipynb`
+* `nmm-rote-training.ipynb`
