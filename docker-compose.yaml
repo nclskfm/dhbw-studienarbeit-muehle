@@ -8,3 +8,5 @@ services:
       - PYTHONHASHSEED=0
     volumes:
       - .:/mnt/notebook
+  redis:
+    image: redis
