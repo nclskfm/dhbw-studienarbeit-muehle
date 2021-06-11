@@ -13,3 +13,4 @@ round-*.txt
 *.fdb_latexmk
 *.synctex.gz
 *.pdf
+retro-database/mongo-seed/retro-collection.json
