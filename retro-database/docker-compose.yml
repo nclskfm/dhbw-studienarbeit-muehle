@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    container_name: retro-database
+    ports:
+      - 27017:27017
+  mongo-seed:
+    image: mongo
+    links:
+      - mongodb
+    volumes: 
+      - .:/mongo-seed
+    command:
+      /mongo-seed/import.sh
