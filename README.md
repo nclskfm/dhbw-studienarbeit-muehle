@@ -33,5 +33,5 @@ Da dieses Repository die Arbeit von einer Studienarbeit und zwei Hausarbeiten be
 
 **Bewertungsgrundlage**:
 * **Notebooks**: [README-hausarbeit-rote-learning.md](README-hausarbeit-rote-learning.md)
-* **git tag**: *ausstehend*
-* **PDF**: *ausstehend*
+* **git tag**: [hausarbeit-rote-learning](https://github.com/nclskfm/dhbw-studienarbeit-muehle/tree/hausarbeit-rote-learning)
+* **PDF**: [Hausarbeit-Rote-Learning.pdf](Hausarbeit-Rote-Learning.pdf)
