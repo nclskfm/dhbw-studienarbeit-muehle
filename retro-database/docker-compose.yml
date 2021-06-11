@@ -10,6 +10,6 @@ services:
     links:
       - mongodb
     volumes: 
-      - ./mongo-seed:/mongo-seed
+      - .:/mongo-seed
     command:
       /mongo-seed/import.sh
