@@ -5,6 +5,7 @@ log.txt
 # Exclude all rounds except the ones stored in /jupyter/rounds
 round-*.txt
 !jupyter/rounds/round-*.txt
+!jupyter/rounds-retrograde-analysis/round-*.txt
 
 *.aux
 *.fls
