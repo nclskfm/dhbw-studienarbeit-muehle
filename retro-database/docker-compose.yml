@@ -1,15 +1,21 @@
-version: "3.8"
+version: '3.8'
 services:
   mongodb:
     image: mongo
     container_name: retro-database
     ports:
       - 27017:27017
+    networks:
+      - nmm-net
   mongo-seed:
     image: mongo
     links:
       - mongodb
-    volumes: 
+    volumes:
       - .:/mongo-seed
-    command:
-      /mongo-seed/import.sh
+    command: /mongo-seed/import.sh
+
+networks:
+  nmm-net:
+    external:
+      name: nmm-network
