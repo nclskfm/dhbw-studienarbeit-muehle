@@ -24,8 +24,8 @@ Da dieses Repository die Arbeit von einer Studienarbeit und zwei Hausarbeiten be
 
 **Bewertungsgrundlage**:
 * **Notebooks**: [README-hausarbeit-retrograde-analysis.md](README-hausarbeit-retrograde-analysis.md)
-* **git tag**: *ausstehend*
-* **PDF**: *ausstehend*
+* **git tag**: [hausarbeit-retrograde-analysis](https://github.com/nclskfm/dhbw-studienarbeit-muehle/tree/hausarbeit-retrograde-analysis)
+* **PDF**: [Hausarbeit-Retrograde-Analysis.pdf](Hausarbeit-Retrograde-Analysis.pdf)
 
 ## Hausarbeit: Rote Learning
 
