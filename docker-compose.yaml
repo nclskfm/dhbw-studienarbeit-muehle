@@ -10,7 +10,9 @@ services:
       - .:/mnt/notebook
     networks:
       - nmm-net
-
+  redis:
+    image: redis
+    
 networks:
   nmm-net:
     name: nmm-network
