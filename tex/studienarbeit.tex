@@ -1,8 +1,9 @@
 \documentclass[11pt]{article}
-    
+
     \usepackage[breakable]{tcolorbox}
     \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
     
+    \usepackage[utf8]{inputenc}
     \usepackage{iftex}
     \ifPDFTeX
     	\usepackage[T1]{fontenc}
@@ -156,8 +157,7 @@
     % Document parameters
     % Document title
     \title{Studienarbeit zur Erstellung einer künstlichen Intelligenz zum Spielen des Brettspiels Mühle}
-    \date{5. Mai 2021}
-    
+    \date{}
     
     
     
@@ -380,8 +380,8 @@
     
 
     
-    \hypertarget{einleitung}{%
-\section{Einleitung}\label{einleitung}}
+    \hypertarget{studienarbeit-zur-erstellung-einer-kuxfcnstlichen-intelligenz-zum-spielen-des-brettspiels-muxfchle}{%
+\section{Einleitung}\label{studienarbeit-zur-erstellung-einer-kuxfcnstlichen-intelligenz-zum-spielen-des-brettspiels-muxfchle}}
 
 Im Rahmen dieser Studienarbeit wird eine künstliche Intelligenz
 entwickelt, die das Brettspiel Mühle spielen kann. Dafür werden die
@@ -392,8 +392,8 @@ Kaufmann im dritten Studienjahr des Bachelorstudiengangs
 \emph{Angewandte Informatik} im Kurs TINF18AI2 angefertigt. Der Betreuer
 der Studienarbeit ist Prof.~Dr.~Karl Stroetmann.
 
-    \hypertarget{muehle}{%
-\subsection{Mühle}\label{muehle}}
+    \hypertarget{einleitung}{%
+\subsection{Mühle}\label{einleitung}}
 
 Mühle ist ein Brettspiel für zwei Personen. Das Spielbrett besteht aus
 drei Quadraten, die in den Seitenmitten verbunden sind. Jeder Spieler
@@ -508,15 +508,15 @@ dem Fazit werden außerdem Verbesserungen für die Implementierung
 aufgezeigt.
 
 
-    % Add a bibliography block to the postdoc
-    
- 
-    
-    
-    
 
 
-    \hypertarget{hilfsfunktionen-fuxfcr-die-spielimplementierung}{%
+
+
+
+
+
+
+\hypertarget{hilfsfunktionen-fuxfcr-die-spielimplementierung}{%
 \section{Hilfsfunktionen für die
 Spielimplementierung}\label{hilfsfunktionen-fuxfcr-die-spielimplementierung}}
 
@@ -812,6 +812,37 @@ Spieler \texttt{\textquotesingle{}b\textquotesingle{}} oder
 \end{Verbatim}
 \end{tcolorbox}
 
+    Die Variable \texttt{NEIGHBORS} ist ein Dictionary, welches alle
+Nachbarfelder von jeder Spielposition speichert. Um das Dictionary zu
+erstellen, wird über jede Spielposition iteriert. In jeder Iteration
+werden die Nachbarfelder auf dem Ring in eine Menge geschrieben. Falls
+die Spielposition auf einer Querverbindung liegt, werden die
+entsprechenden Nachbarn ebenso in die Menge geschrieben. Am Ende jeder
+Iteration wird die generierte Menge in das Dictionary gespeichert.
+
+Somit existiert für jede Spielposition ein Eintrag in
+\texttt{NEIGHBORS}, welcher eine Menge von allen Nachbarfeldern enthält.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{NEIGHBORS} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+
+\PY{k}{for} \PY{n}{r} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
+    \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+        \PY{n}{neighbor} \PY{o}{=} \PY{p}{\PYZob{}}
+            \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{p}{(}\PY{n}{c}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{,}
+            \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{p}{(}\PY{n}{c}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{,}
+        \PY{p}{\PYZcb{}}
+        \PY{k}{if} \PY{n}{c} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+            \PY{k}{if} \PY{n}{r} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{n}{neighbor}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{p}{(}\PY{n}{r}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{c}\PY{p}{)}\PY{p}{)}
+            \PY{k}{if} \PY{n}{r} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2}\PY{p}{:}
+                \PY{n}{neighbor}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{p}{(}\PY{n}{r}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{c}\PY{p}{)}\PY{p}{)}
+        \PY{n}{NEIGHBORS}\PY{p}{[}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{c}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{neighbor}
+\end{Verbatim}
+\end{tcolorbox}
+
     Die Funktion \texttt{findNeighboringEmptyCells} sucht für eine gegebene
 Zelle \texttt{coordinates} die freien Nachbarzellen. Die Funktion hat
 zwei Argumente:
@@ -825,19 +856,17 @@ zwei Argumente:
   Ausgangszelle.
 \end{itemize}
 
-Die Funktion überprüft, welche der angrenzenden Zellen in der Menge von
-\texttt{findEmptyCells} enthalten ist und gibt diese zurück.
+Die Funktion überprüft mit Hilfe der Konstanten \texttt{NEIGHBORS} alle
+Nachbarfelder, ob diese frei sind.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{findNeighboringEmptyCells}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{coordinates}\PY{p}{)}\PY{p}{:}
-    \PY{p}{(}\PY{n}{rootR}\PY{p}{,} \PY{n}{rootC}\PY{p}{)} \PY{o}{=} \PY{n}{coordinates}
     \PY{k}{return} \PY{p}{\PYZob{}}
         \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{c}\PY{p}{)}
-        \PY{k}{for} \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{c}\PY{p}{)} \PY{o+ow}{in} \PY{n}{findEmptyCells}\PY{p}{(}\PY{n}{board}\PY{p}{)}
-        \PY{k}{if} \PY{p}{(}\PY{n}{r} \PY{o}{==} \PY{n}{rootR} \PY{o+ow}{and} \PY{p}{(}\PY{n}{c} \PY{o}{==} \PY{p}{(}\PY{n}{rootC} \PY{o}{+} \PY{l+m+mi}{7}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{l+m+mi}{8} \PY{o+ow}{or} \PY{n}{c} \PY{o}{==} \PY{p}{(}\PY{n}{rootC} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
-        \PY{o+ow}{or} \PY{p}{(}\PY{n}{c} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{1} \PY{o+ow}{and} \PY{n}{c} \PY{o}{==} \PY{n}{rootC} \PY{o+ow}{and} \PY{p}{(}\PY{n}{r} \PY{o}{==} \PY{n}{rootR} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1} \PY{o+ow}{or} \PY{n}{r} \PY{o}{==} \PY{n}{rootR} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+        \PY{k}{for} \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{c}\PY{p}{)} \PY{o+ow}{in} \PY{n}{NEIGHBORS}\PY{p}{[}\PY{n}{coordinates}\PY{p}{]}
+        \PY{k}{if} \PY{n}{board}\PY{p}{[}\PY{n}{r}\PY{p}{]}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}
     \PY{p}{\PYZcb{}}
 \end{Verbatim}
 \end{tcolorbox}
@@ -990,8 +1019,8 @@ hat.
     Die Funktion \texttt{findPossibleMills} berechnet für ein Spielbrett und
 einen Spieler alle möglichen Mühlen. Eine mögliche Mühle ist eine Mühle,
 bei der eine Zelle noch leer ist, hierbei wird nicht betrachtet, ob es
-im nächsten Zug möglich ist, diese Mühle zu vervollständigen. Dabei wird
-Die Funktion hat zwei Argumente:
+im nächsten Zug möglich ist, diese Mühle zu vervollständigen. Dabei hat
+die Funktion zwei Argumente:
 
 \begin{itemize}
 \tightlist
@@ -1089,7 +1118,7 @@ des Gegners geschlagen werden.
 \end{Verbatim}
 \end{tcolorbox}
 
-    Die Funktion \texttt{poundMills} errechnet aus einem Spielbrett, einer
+    Die Funktion \texttt{poundStones} errechnet aus einem Spielbrett, einer
 Anzahl an zu schlagenden Steinen und einem Spieler alle möglichen
 Spielbrettkonfigurationen, bei denen der Spieler die gegebene Anzahl an
 Steinen geschlagen hat. Die Funktion hat 3 Parameter:
@@ -1115,36 +1144,70 @@ darf.
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k}{def} \PY{n+nf}{poundMills}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{count}\PY{p}{,} \PY{n}{p}\PY{p}{)}\PY{p}{:}
+\PY{k}{def} \PY{n+nf}{poundStones}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{count}\PY{p}{,} \PY{n}{p}\PY{p}{)}\PY{p}{:}
     \PY{k}{if} \PY{n}{count} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{:}
         \PY{k}{return} \PY{p}{\PYZob{}} \PY{n}{board} \PY{p}{\PYZcb{}}
 
     \PY{k}{return} \PY{p}{\PYZob{}}
         \PY{n}{place}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{cell}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{k}{for} \PY{n}{b} \PY{o+ow}{in} \PY{n}{poundMills}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{count}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+        \PY{k}{for} \PY{n}{b} \PY{o+ow}{in} \PY{n}{poundStones}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{count}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{p}\PY{p}{)}
         \PY{k}{for} \PY{n}{cell} \PY{o+ow}{in} \PY{n}{getCellsPoundable}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{p}\PY{p}{)}
     \PY{p}{\PYZcb{}}
 \end{Verbatim}
 \end{tcolorbox}
 
+    Die Funktion \texttt{poundMills} errechnet für jedes gegebene Spielbrett
+aus \texttt{newBoards} wie viele neue Mühlen im Vergleich zu den bereits
+existierenden Mühlen \texttt{mills} existieren. Die resultierende Anzahl
+wird verwendet um für das jeweilige Spielbrett die richtige Anzahl an
+Steinen zu schlagen. Die Funktion hat 3 Parameter:
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
- 
-    
-    
-    
+\begin{itemize}
+\tightlist
+\item
+  \texttt{mills} ist eine Menge von Mühlen;
+\item
+  \texttt{newBoards} ist eine Menge von Spielbrettern;
+\item
+  \texttt{p} \(\in Players\).
+\end{itemize}
+
+Der Rückgabewert ist eine Menge mit allen möglichen
+Spielbrettkonstellationen, bei denen die erlaubte Anzahl an gegnerischen
+Steinen geschlagen wurde.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{poundMills}\PY{p}{(}\PY{n}{mills}\PY{p}{,} \PY{n}{newBoards}\PY{p}{,} \PY{n}{player}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{p}{\PYZob{}}
+        \PY{n}{result}
+        \PY{k}{for} \PY{n}{board} \PY{o+ow}{in} \PY{n}{newBoards}
+        \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{poundStones}\PY{p}{(}
+            \PY{n}{board}\PY{p}{,}
+            \PY{n}{countNewMills}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{mills}\PY{p}{,} \PY{n}{player}\PY{p}{)}\PY{p}{,}
+            \PY{n}{player}
+        \PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+
+
+
+
+
+
+
 
     
-    \hypertarget{spiel-definition}{%
+\hypertarget{spiel-definition}{%
 \section{Spiel Definition}\label{spiel-definition}}
 
 In diesem Kapitel werden Funktionen diskutiert, die nötig sind, um das
 Spiel Mühle
 
-\[G_{Nine Men's Morris} = 〈States,s_0,Players,nextStates,finished,utility〉\]
+\[G_{Nine Men's Morris} = \langle States,s_0,Players,nextStates,finished,utility \rangle \]
 
 zu definieren. Es werden die
 \href{http://www.muehlespiel.eu/images/pdf/WMD_Turnierreglement.pdf}{offizellen
@@ -1173,8 +1236,11 @@ Spielern gespielt wird, die jeweils weiße oder schwarze Steine legen,
 werden die Spieler äquivalent benannt.
 
 \begin{itemize}
-    \item Der beginnende Spieler weiß wird als \texttt{w} dargestellt,
-    \item der gegnerische Spieler als \texttt{b}.
+\tightlist
+\item
+  Der beginnende Spieler weiß wird als \texttt{w} dargestellt,
+\item
+  der gegnerische Spieler als \texttt{b}.
 \end{itemize}
 
 Für die Implementierung der Funktionen ist diese Menge nicht nötig. Aus
@@ -1198,12 +1264,21 @@ eine Definition von \(States\) verzichtet.
 Der Startzustand \(s_0\) hingegen wird zu Beginn des Spiel benötigt und
 ist im Folgenden definiert. Er bezeichnet ein leeres Spielbrett, bei dem
 beide Spieler noch alle ihre Steine legen müssen. Ein Zustand
-(\texttt{state}) ist eine Tupel die 1. den Stapel (\texttt{stash}) von
-zu legenden Steinen und 2. das Spielbrett (\texttt{board}) selbst
+(\texttt{state}) ist ein Tupel, das
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  den Stapel (\texttt{stash}) von zu legenden Steinen und
+\item
+  das Spielbrett (\texttt{board}) selbst
+\end{enumerate}
+
 beinhaltet.
 
-Der Stapel ist eine Tupel \(\langle w, b \rangle\), die die Anzahl der
-zu legenden Steine von Weiß \(w\) und Schwarz \(b\) beinhaltet. Diese
+Der Stapel ist ein Tupel \(\langle w, b \rangle\), das die Anzahl der zu
+legenden Steine von Weiß \(w\) und Schwarz \(b\) beinhaltet. Diese
 werden in der genannten Reihenfolge als Zahlen dargestellt.
 \[w, b \in \{0...9\}\]
 
@@ -1225,15 +1300,19 @@ der unteren rechten Ecke. An diesen Spielpositionen wird der Spieler
 \(p\) oder eine leere Spielposition gespeichert, für diese gilt
 \(p \in Player \cup \{'\ '\}\).
 
-So ist ein State eine Tupel \(\langle stash, board \rangle\) dessen
-Parameter 
+So ist ein State ein Tupel \(\langle stash, board \rangle\) dessen
+Parameter
 
 \begin{itemize}
-    \item \texttt{stash} eine weitere Tupel, bestehend aus \(\langle w, b \rangle\) und
-    \item \texttt{board} eine Tripel, welche die
-    Ringe \(r_0\), \(r_1\) und \(r_2\) beinhaltet. Die Ringe selbst sind
-    Neun-Tupel, dessen Elemente die einzelnen Spielpositionen
-    \(c \in Player \cup \{'\ '\}\) darstellen.
+\tightlist
+\item
+  \texttt{stash} ein weiteres Tupel, bestehend aus
+  \(\langle w, b \rangle\) und
+\item
+  \texttt{board} ein Tripel, welches die Ringe \(r_0\), \(r_1\) und
+  \(r_2\) beinhaltet. Die Ringe selbst sind Neun-Tupel, dessen Elemente
+  die einzelnen Spielpositionen \(c \in Player \cup \{'\ '\}\)
+  darstellen.
 \end{itemize}
 
 Der Startzustand \(s_0\) wird in Python wie folgt geschrieben:
@@ -1262,24 +1341,27 @@ Da das Spiel in drei Phasen aufgeteilt ist, ist auch die Implementierung
 aus Gründen der Übersicht in die folgenden Phasen unterteilt:
 
 \begin{enumerate}
-    \item Die
-    erste Phase des Spiels heißt \emph{placing} Phase, in der die Spieler
-    alle ihre Steine aus dem Stapel auf das Spielbrett legen müssen. Hierbei
-    dürfen bereits Mühlen gelegt und geschlagen werden. Es muss ein Stein
-    platziert werden.
-    \item Die zweite Phase heißt \emph{moving} Phase und
-    beginnt sobald der Stapel des Spielers leer ist. Beide Spieler kommen
-    gleichzeitig in die zweite Phase, in der die eigenen Steine nur noch
-    entlang der Linien auf die nächste Spielposition geschoben werden
-    dürfen. Es muss ein Stein bewegt werden.
-    \item Die letzte Phase heißt
-    \emph{flying} Phase. Diese Phase beginnt für einen Spieler, sobald
-    dieser nur noch \(3\) Steine auf dem Spielbrett liegen hat und sein
-    Stapel leer ist. Der Eintritt in die dritte Phase ist nicht vom
-    gegnerischen Spieler abhängig, somit können Spieler für mehrere Züge
-    alleine in der dritten Phase sein. Hierbei können die verbleibenden
-    Steine beliebig bewegt werden, ohne dass die Positionen direkt
-    nebeneinander liegen müssen. Es muss ein Stein bewegt werden.
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Die erste Phase des Spiels heißt \emph{placing} Phase, in der die
+  Spieler alle ihre Steine aus dem Stapel auf das Spielbrett legen
+  müssen. Hierbei dürfen bereits Mühlen gelegt und geschlagen werden. Es
+  muss ein Stein platziert werden.
+\item
+  Die zweite Phase heißt \emph{moving} Phase und beginnt sobald der
+  Stapel des Spielers leer ist. Beide Spieler kommen gleichzeitig in die
+  zweite Phase, in der die eigenen Steine nur noch entlang der Linien
+  auf die nächste Spielposition geschoben werden dürfen. Es muss ein
+  Stein bewegt werden.
+\item
+  Die letzte Phase heißt \emph{flying} Phase. Diese Phase beginnt für
+  einen Spieler, sobald dieser nur noch \(3\) Steine auf dem Spielbrett
+  liegen hat und sein Stapel leer ist. Der Eintritt in die dritte Phase
+  ist nicht vom gegnerischen Spieler abhängig, somit können Spieler für
+  mehrere Züge alleine in der dritten Phase sein. Hierbei können die
+  verbleibenden Steine beliebig bewegt werden, ohne dass die Positionen
+  direkt nebeneinander liegen müssen. Es muss ein Stein bewegt werden.
 \end{enumerate}
 
 In der ersten Phase, der \emph{placing} Phase, wird ein Stein vom Stapel
@@ -1301,16 +1383,14 @@ Spielzug auf dem Zustand \texttt{s} ausführt.
   Daraufhin wird auf jede freie Spielposition ein neuer Stein des
   Spielers \texttt{p} gelegt.
 \item
-  Nun werden unter Verwendung von dem Ergebnis aus \emph{1.} und der
-  Funktion \texttt{countNewMills} alle neu entstandenen Mühlen gezählt.
-  Für diese Anzahl gilt \(a \in \{0,1,2\}\).
+  Nun wird vom Stapel des Spielers \texttt{p} ein Stein weg genommen.
 \item
-  Um für die neu entstandenen Mühlen die entsprechende Anzahl an Steinen
-  zu schlagen, wird die Hilfsfunktion \texttt{poundMills} verwendet.
+  Im nächsten Schritt wird mit der Hilfsfunktion \texttt{poundMills}
+  errechnet, ob neue Mühlen in diesem Zug entstanden sind. Wenn ja, wird
+  direkt die richtige Anzahl an gegnerischen Steinen geschlagen.
 \item
-  Zum Schluss wird vom Stapel des Spielers \texttt{p} ein Stein weg
-  genommen und der Stapel mit den Spielbrettern wieder zu Zuständen
-  vereint.
+  Für die Rückgabe wird der Stapel mit den resultierenden Spielbrettern
+  wieder zu Zuständen vereint.
 \end{enumerate}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -1327,24 +1407,15 @@ Spielzug auf dem Zustand \texttt{s} ausführt.
         \PY{n}{place}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{c}\PY{p}{)}\PY{p}{,} \PY{n}{p}\PY{p}{)}
         \PY{k}{for} \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{c}\PY{p}{)} \PY{o+ow}{in} \PY{n}{findEmptyCells}\PY{p}{(}\PY{n}{board}\PY{p}{)}
     \PY{p}{\PYZcb{}}
-    \PY{c+c1}{\PYZsh{} Calculate how many new mills were created}
-    \PY{n}{boardMills} \PY{o}{=} \PY{p}{\PYZob{}}
-        \PY{n}{board}\PY{p}{:} \PY{n}{countNewMills}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{mills}\PY{p}{,} \PY{n}{p}\PY{p}{)}
-        \PY{k}{for} \PY{n}{board} \PY{o+ow}{in} \PY{n}{placeBoards}
-    \PY{p}{\PYZcb{}}
-
-    \PY{c+c1}{\PYZsh{} Here all final boards will be collected}
-    \PY{n}{boards} \PY{o}{=} \PY{p}{\PYZob{}}
-        \PY{n}{result}
-        \PY{k}{for} \PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{count}\PY{p}{)} \PY{o+ow}{in} \PY{n}{boardMills}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)} 
-        \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{poundMills}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{count}\PY{p}{,} \PY{n}{p}\PY{p}{)}
-    \PY{p}{\PYZcb{}}
 
     \PY{c+c1}{\PYZsh{} Remove one stone from the players stache}
     \PY{p}{(}\PY{n}{cw}\PY{p}{,} \PY{n}{cb}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{cw}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{cb}\PY{p}{)} \PY{k}{if} \PY{n}{p} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}} \PY{k}{else} \PY{p}{(}\PY{n}{cw}\PY{p}{,} \PY{n}{cb}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
 
-    \PY{c+c1}{\PYZsh{} Return all possible states}
-    \PY{k}{return} \PY{p}{\PYZob{}} \PY{p}{(}\PY{p}{(}\PY{n}{cw}\PY{p}{,} \PY{n}{cb}\PY{p}{)}\PY{p}{,} \PY{n}{board}\PY{p}{)} \PY{k}{for} \PY{n}{board} \PY{o+ow}{in} \PY{n}{boards} \PY{p}{\PYZcb{}}
+    \PY{c+c1}{\PYZsh{} Pound a stone for every new mill}
+    \PY{k}{return} \PY{p}{\PYZob{}}
+        \PY{p}{(}\PY{p}{(}\PY{n}{cw}\PY{p}{,} \PY{n}{cb}\PY{p}{)}\PY{p}{,} \PY{n}{board}\PY{p}{)}
+        \PY{k}{for} \PY{n}{board} \PY{o+ow}{in} \PY{n}{poundMills}\PY{p}{(}\PY{n}{mills}\PY{p}{,} \PY{n}{placeBoards}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1368,15 +1439,12 @@ Menge aller Zustände, die erreicht werden können, in denen der Spieler
   \texttt{findCellsOf} und \texttt{findNeighboringEmptyCells} errechnet.
   Die Steine werden dort hin bewegt.
 \item
-  Nun werden unter Verwendung von dem Ergebnis aus \emph{1.} und der
-  Funktion \texttt{countNewMills} alle neu entstandenen Mühlen gezählt.
-  Für diese Anzahl gilt \(a \in \{0,1\}\).
+  Im nächsten Schritt wird mit der Hilfsfunktion \texttt{poundMills}
+  errechnet, ob neue Mühlen in diesem Zug entstanden sind. Wenn ja, wird
+  direkt die richtige Anzahl an gegnerischen Steinen geschlagen.
 \item
-  Um für die neu entstandenen Mühlen die entsprechende Anzahl an Steinen
-  zu schlagen, wird die Hilfsfunktion \texttt{poundMills} verwendet.
-\item
-  Zum Schluss wird der Stapel mit den Spielbrettern wieder zu Zuständen
-  vereint.
+  Für die Rückgabe wird der Stapel mit den resultierenden Spielbrettern
+  wieder zu Zuständen vereint.
 \end{enumerate}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -1395,20 +1463,11 @@ Menge aller Zustände, die erreicht werden können, in denen der Spieler
         \PY{k}{for} \PY{n}{des} \PY{o+ow}{in} \PY{n}{findNeighboringEmptyCells}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{src}\PY{p}{)}
     \PY{p}{\PYZcb{}}
 
-    \PY{c+c1}{\PYZsh{} Calculate how many new mills were created}
-    \PY{n}{boardMills} \PY{o}{=} \PY{p}{\PYZob{}}
-        \PY{n}{b}\PY{p}{:} \PY{n}{countNewMills}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{mills}\PY{p}{,} \PY{n}{p}\PY{p}{)}
-        \PY{k}{for} \PY{n}{b} \PY{o+ow}{in} \PY{n}{moveBoards}
+    \PY{c+c1}{\PYZsh{} Pound a stone for every new mill}
+    \PY{k}{return} \PY{p}{\PYZob{}}
+        \PY{p}{(}\PY{p}{(}\PY{n}{cw}\PY{p}{,} \PY{n}{cb}\PY{p}{)}\PY{p}{,} \PY{n}{board}\PY{p}{)}
+        \PY{k}{for} \PY{n}{board} \PY{o+ow}{in} \PY{n}{poundMills}\PY{p}{(}\PY{n}{mills}\PY{p}{,} \PY{n}{moveBoards}\PY{p}{,} \PY{n}{p}\PY{p}{)}
     \PY{p}{\PYZcb{}}
-
-    \PY{c+c1}{\PYZsh{} Here all final boards will be collected}
-    \PY{n}{boards} \PY{o}{=} \PY{p}{\PYZob{}}
-        \PY{n}{result}
-        \PY{k}{for} \PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{count}\PY{p}{)} \PY{o+ow}{in} \PY{n}{boardMills}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)} 
-        \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{poundMills}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{count}\PY{p}{,} \PY{n}{p}\PY{p}{)}
-    \PY{p}{\PYZcb{}}
-
-    \PY{k}{return} \PY{p}{\PYZob{}} \PY{p}{(}\PY{p}{(}\PY{n}{cw}\PY{p}{,} \PY{n}{cb}\PY{p}{)}\PY{p}{,} \PY{n}{board}\PY{p}{)} \PY{k}{for} \PY{n}{board} \PY{o+ow}{in} \PY{n}{boards} \PY{p}{\PYZcb{}}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1429,19 +1488,16 @@ einen legalen Spielzug auf dem Zustand \texttt{s} ausführt.
   Funktion \texttt{findMills} gespeichert.
 \item
   Danach werden die Positionen aller Steine des Spielers \texttt{p} und
-  dessen leere Nachbarpositionen mit Hilfe der Funktionen
-  \texttt{findCellsOf} und \texttt{findNeighboringEmptyCells} errechnet.
-  Die Steine werden dort hin bewegt.
+  die Positionen aller leeren Zellen mit Hilfe der Funktionen
+  \texttt{findCellsOf} und \texttt{findEmptyCells} errechnet. Die Steine
+  werden dort hin bewegt.
 \item
-  Nun werden unter Verwendung von dem Ergebnis aus \emph{1.} und der
-  Funktion \texttt{countNewMills} alle neu entstandenen Mühlen gezählt.
-  Für diese Anzahl gilt \(a \in \{0,1\}\).
+  Im nächsten Schritt wird mit der Hilfsfunktion \texttt{poundMills}
+  errechnet, ob neue Mühlen in diesem Zug entstanden sind. Wenn ja, wird
+  direkt die richtige Anzahl an gegnerischen Steinen geschlagen.
 \item
-  Um für die neu entstandenen Mühlen die entsprechende Anzahl an Steinen
-  zu schlagen, wird die Hilfsfunktion \texttt{poundMills} verwendet.
-\item
-  Zum Schluss wird der Stapel mit den Spielbrettern wieder zu Zuständen
-  vereint.
+  Für die Rückgabe wird der Stapel mit den resultierenden Spielbrettern
+  wieder zu Zuständen vereint.
 \end{enumerate}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -1454,26 +1510,17 @@ einen legalen Spielzug auf dem Zustand \texttt{s} ausführt.
     \PY{n}{mills} \PY{o}{=} \PY{n}{findMills}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{p}\PY{p}{)}
 
     \PY{c+c1}{\PYZsh{} Choose any stone of the player and move it to an empty neighbor}
-    \PY{n}{moveBoards} \PY{o}{=} \PY{p}{\PYZob{}}
+    \PY{n}{flyBoards} \PY{o}{=} \PY{p}{\PYZob{}}
         \PY{n}{move}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{src}\PY{p}{,} \PY{n}{des}\PY{p}{)}
         \PY{k}{for} \PY{n}{src} \PY{o+ow}{in} \PY{n}{findCellsOf}\PY{p}{(}\PY{n}{board}\PY{p}{,} \PY{n}{p}\PY{p}{)}
         \PY{k}{for} \PY{n}{des} \PY{o+ow}{in} \PY{n}{findEmptyCells}\PY{p}{(}\PY{n}{board}\PY{p}{)}
     \PY{p}{\PYZcb{}}
 
-    \PY{c+c1}{\PYZsh{} Calculate how many new mills were created}
-    \PY{n}{boardMills} \PY{o}{=} \PY{p}{\PYZob{}}
-        \PY{n}{b}\PY{p}{:} \PY{n}{countNewMills}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{mills}\PY{p}{,} \PY{n}{p}\PY{p}{)}
-        \PY{k}{for} \PY{n}{b} \PY{o+ow}{in} \PY{n}{moveBoards}
+    \PY{c+c1}{\PYZsh{} Pound a stone for every new mill}
+    \PY{k}{return} \PY{p}{\PYZob{}}
+        \PY{p}{(}\PY{p}{(}\PY{n}{cw}\PY{p}{,} \PY{n}{cb}\PY{p}{)}\PY{p}{,} \PY{n}{board}\PY{p}{)}
+        \PY{k}{for} \PY{n}{board} \PY{o+ow}{in} \PY{n}{poundMills}\PY{p}{(}\PY{n}{mills}\PY{p}{,} \PY{n}{flyBoards}\PY{p}{,} \PY{n}{p}\PY{p}{)}
     \PY{p}{\PYZcb{}}
-
-    \PY{c+c1}{\PYZsh{} Here all final boards will be collected}
-    \PY{n}{boards} \PY{o}{=} \PY{p}{\PYZob{}}
-        \PY{n}{result}
-        \PY{k}{for} \PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{count}\PY{p}{)} \PY{o+ow}{in} \PY{n}{boardMills}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)} 
-        \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{poundMills}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{count}\PY{p}{,} \PY{n}{p}\PY{p}{)}
-    \PY{p}{\PYZcb{}}
-
-    \PY{k}{return} \PY{p}{\PYZob{}} \PY{p}{(}\PY{p}{(}\PY{n}{cw}\PY{p}{,} \PY{n}{cb}\PY{p}{)}\PY{p}{,} \PY{n}{board}\PY{p}{)} \PY{k}{for} \PY{n}{board} \PY{o+ow}{in} \PY{n}{boards} \PY{p}{\PYZcb{}}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1485,9 +1532,9 @@ Fallunterscheidung ausgeführt, sodass gilt
 
 \[
 nextStates(s, p) = \begin{cases}
-nextStatesPlace(s, p) & falls\ \  playerPhase(s, p) = 1 \\
-nextStatesMove(s, p) & falls\ \  playerPhase(s, p) = 2 \\
-nextStatesFly(s, p) & falls\ \  playerPhase(s, p) = 3
+nextStatesPlace(s, p) & falls\ \ playerPhase(s, p) = 1 \\
+nextStatesMove(s, p) & falls\ \ playerPhase(s, p) = 2 \\
+nextStatesFly(s, p) & falls\ \ playerPhase(s, p) = 3
 \end{cases}
 \]
 
@@ -1517,10 +1564,12 @@ Die Funktion \texttt{finished} errechnet für einen gegebenen Zustand
 Reihe ist. Dies ist der Fall, g.d.w.
 
 \begin{itemize}
-    \item einer der Spieler
-    \(p \in Players\) weniger als 3 Steine hat (\texttt{hasEnoughStones})
-    oder
-    \item der Spieler \texttt{p} keinen legalen Zug mehr tätigen kann.
+\tightlist
+\item
+  einer der Spieler \(p \in Players\) weniger als 3 Steine hat
+  (\texttt{hasEnoughStones}) oder
+\item
+  der Spieler \texttt{p} keinen legalen Zug mehr tätigen kann.
 \end{itemize}
 
 Der optionale Parameter \texttt{ns} ist lediglich eine Optimierung, die
@@ -1545,9 +1594,9 @@ wer gewonnen hat.
 
 \[
 utility(s, p) = \begin{cases}
--1 & falls\ \  p \ verliert \ in \ s \\
- 0 & falls\ \  Unentschieden         \\
- 1 & falls\ \  p \ gewinnt  \ in \ s
+-1 & falls\ \ p \ verliert \ in \ s \\
+ 0 & falls\ \ Unentschieden         \\
+ 1 & falls\ \ p \ gewinnt  \ in \ s
 \end{cases}
 \]
 
@@ -1577,22 +1626,21 @@ errechnen lassen zu müssen.
     \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{nextStates}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{p}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
         \PY{k}{return} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
 
-    \PY{c+c1}{\PYZsh{} Should be impossible, as utility() will only be called if finished() returns True}
-    \PY{k}{return} \PY{l+m+mi}{0}
+    \PY{k}{assert} \PY{k+kc}{False}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{utility() called without finished() = True}\PY{l+s+s2}{\PYZdq{}}
 \end{Verbatim}
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
 
-    
-    \hypertarget{kuxfcnstliche-intelligenz}{%
+
+
+
+
+
+
+
+
+\hypertarget{kuxfcnstliche-intelligenz}{%
 \section{Künstliche Intelligenz}\label{kuxfcnstliche-intelligenz}}
 
 Diese Studienarbeit implementiert zwei verschiedene Algorithmen als
@@ -1601,7 +1649,6 @@ leichter wiederverwendet und mit verschiedenen Einstellungen ausgeführt
 werden können, wird eine abstrakte Superklasse angelegt. Diese bescheibt
 welche Funktionen nötig sind, damit eine Implementierung den Ansprüchen
 einer künstlichen Intelligenz für Mühle entspricht.
-
 
     \hypertarget{bestmoves}{%
 \subsection{BestMoves}\label{bestmoves}}
@@ -1708,16 +1755,15 @@ zurückgeben soll. Sie hat zwei Argumente:
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
 
-    
-    \hypertarget{heuristik}{%
+
+
+
+
+
+
+
+\hypertarget{heuristik}{%
 \subsection{Heuristik}\label{heuristik}}
 
 Da die Rechenleistung nicht ausreicht um vor jedem Zug den gesamten
@@ -1725,7 +1771,6 @@ Spielbaum abzusuchen, gibt es eine maximale Rekursionstiefe, bei der die
 Suche abgebrochen wird. Wenn diese Rekusionstiefe erreicht wird, muss
 der Wert des aktuellen Zustands geschätzt werden. Hierfür wird die in
 diesem Kapitel beschriebene Heuristik verwendet.
-
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -1747,14 +1792,21 @@ Eine Instanz der Klasse \texttt{HeuristicWeights} besteht aus vier
 Gewichtungen, eine für jede Eigenschaft:
 
 \begin{itemize}
-    \item \texttt{stones}: Diese Eigenschaft zählt, wie viele Steine der Spieler auf dem Spielbrett hat.
-    \item \texttt{stash}: Die Steine auf dem Stapel werden ebenfalls gezählt.
-    \item \texttt{mills}: Die Anzahl der Mühlen, die ein Spieler auf dem Spielbrett hat, wird durch diese Eigenschaft gezählt.
-    \item \texttt{possible\_mills}: Die Anzahl der möglichen Mühlen, dh. Mühlen
-    bei denen eine Zelle noch frei ist, werden ebenfalls gezählt. (Siehe
-    \texttt{findPossibleMills} im Kapitel \emph{Hilfsfunktionen für die
-    Spielimplementierung} für eine genauere Beschreibung einer möglichen
-    Mühle.)
+\tightlist
+\item
+  \texttt{stones}: Diese Eigenschaft zählt, wie viele Steine der Spieler
+  auf dem Spielbrett hat.
+\item
+  \texttt{stash}: Die Steine auf dem Stapel werden ebenfalls gezählt.
+\item
+  \texttt{mills}: Die Anzahl der Mühlen, die ein Spieler auf dem
+  Spielbrett hat, wird durch diese Eigenschaft gezählt.
+\item
+  \texttt{possible\_mills}: Die Anzahl der möglichen Mühlen, dh. Mühlen
+  bei denen eine Zelle noch frei ist, werden ebenfalls gezählt. (Siehe
+  \texttt{findPossibleMills} im Kapitel \emph{Hilfsfunktionen für die
+  Spielimplementierung} für eine genauere Beschreibung einer möglichen
+  Mühle.)
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -1845,16 +1897,15 @@ Vorzeichen angepasst, damit der gegebene Spieler berücksichtigt wird.
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
 
-    
-    \hypertarget{symmetrie}{%
+
+
+
+
+
+
+
+\hypertarget{symmetrie}{%
 \section{Symmetrie}\label{symmetrie}}
 
 Um das Caching noch effektiver zu gestalten, sollen neben
@@ -1911,10 +1962,13 @@ kommt die Rotation zustande.
 Bei den Spiegelungen wird an vier Achsen gespiegelt:
 
 \begin{itemize}
-    \item die \emph{horizontale} und \emph{vertikale} Achse, sowie
-    \item die Diagonale von
-    oben links nach unten rechts (\emph{negative Diagonale}) und die
-    Diagonale von unten links nach oben rechts (\emph{positive Diagnonale}).
+\tightlist
+\item
+  die \emph{horizontale} und \emph{vertikale} Achse, sowie
+\item
+  die Diagonale von oben links nach unten rechts (\emph{negative
+  Diagonale}) und die Diagonale von unten links nach oben rechts
+  (\emph{positive Diagonale}).
 \end{itemize}
 
 Diese Spiegelungen können einzelnd pro Ring vorgenommen werden, da der
@@ -1977,7 +2031,7 @@ darstellen.
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k}{def} \PY{n+nf}{symmetryDiagnoalNegative}\PY{p}{(}\PY{n}{boards}\PY{p}{)}\PY{p}{:}
+\PY{k}{def} \PY{n+nf}{symmetryDiagonalNegative}\PY{p}{(}\PY{n}{boards}\PY{p}{)}\PY{p}{:}
     \PY{k}{return} \PY{p}{\PYZob{}}
         \PY{n+nb}{tuple}\PY{p}{(}
             \PY{n+nb}{tuple}\PY{p}{(}
@@ -2035,7 +2089,7 @@ werden.
     \PY{n}{boards} \PY{o}{|}\PY{o}{=} \PY{n}{symmetryHorizontal}\PY{p}{(}\PY{n}{boards}\PY{p}{)}
     \PY{n}{boards} \PY{o}{|}\PY{o}{=} \PY{n}{symmetryVertical}\PY{p}{(}\PY{n}{boards}\PY{p}{)}
     \PY{n}{boards} \PY{o}{|}\PY{o}{=} \PY{n}{symmetryDiagonalPositive}\PY{p}{(}\PY{n}{boards}\PY{p}{)}
-    \PY{n}{boards} \PY{o}{|}\PY{o}{=} \PY{n}{symmetryDiagnoalNegative}\PY{p}{(}\PY{n}{boards}\PY{p}{)}
+    \PY{n}{boards} \PY{o}{|}\PY{o}{=} \PY{n}{symmetryDiagonalNegative}\PY{p}{(}\PY{n}{boards}\PY{p}{)}
     \PY{n}{boards} \PY{o}{|}\PY{o}{=} \PY{n}{symmetryRing}\PY{p}{(}\PY{n}{boards}\PY{p}{)}
     
     \PY{k}{return} \PY{p}{\PYZob{}}
@@ -2046,13 +2100,13 @@ werden.
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -2066,7 +2120,7 @@ werden.
 \end{tcolorbox}
 
     \hypertarget{minimax}{%
-\section{Minimax}\label{minimax}}
+\subsection{Minimax}\label{minimax}}
 
 Der \emph{Minimax} Algorithmus bietet eine einfache Möglichkeit, um den
 perfekten Spielzug in einem Nullsummenspiel zu berechnen. Um diesen zu
@@ -2090,9 +2144,11 @@ eine einfache heuristische Bewertung des \texttt{state} für den
 
     Für die Implementierung des \emph{Minimax} Algorithmus wird nun eine
 Klasse \texttt{Minimax} implementiert, die von der zuvor definierten
-Klasse \texttt{ArtificialIntelligence} erbt. Hierzu wird die Funktion
-\texttt{bestMoves} überschrieben, die später genauer definiert wird, und
-der Konstruktor \texttt{\_\_init\_\_} implementiert. Der Konstruktor
+Klasse \texttt{ArtificialIntelligence} erbt. Hier wird zunächst die
+Funktion \texttt{bestMoves} überschrieben, da diese vom \texttt{ABC}
+Paket sonst fälschlicherweise als abstrakt erkannt werden würde. Im
+weiteren Verlauf des Notebooks wird sie implementiert. Der Konstruktor
+\texttt{\_\_init\_\_} erhält bereits hier seine Implementierung und
 besitzt zwei optionale Parameter, die den Algorithmus konfigurieren
 können:
 
@@ -2108,6 +2164,11 @@ können:
 Zusätzlich initialisiert der Konstruktor das Attribut \texttt{cache} mit
 einem leeren \texttt{dict}. Dieses wird später als Transpositionstabelle
 verwendet.
+
+An dieser Stelle muss der Standardwert des \texttt{weights} Parameters
+Python-untypisch im Konstruktorrumpf gesetzt werden, da dies sonst zu
+Problemen mit dem \texttt{multiprocessing} Paket führt. Eine genau
+Erklärung findet sich im Kapitel über \emph{$\alpha$-$\beta$-Pruning}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -2180,8 +2241,7 @@ bedeutet das für die Funktion:
 \[ value(state, player, limit) = \begin{cases}
 utility(state, player) & falls\ \ finished(state, player) = true \\
 heuristic(state, player) & falls\ \ limit = 0 \\
-max(-value(ns, \neg{player}, limit)) \\
-\forall  ns \in nextStates(state, player) & sonst
+max( \{-value(ns, opponent(player), limit) \vert \\ ns \in nextStates(state, player)\} ) & sonst
 \end{cases}
 \]
 
@@ -2211,12 +2271,17 @@ Zusätzlich werden Informationen gesammelt, die die genaueren Abläufe im
 Algorithmus abbilden:
 
 \begin{itemize}
-    \item \texttt{runtime} ist die Rechendauer der Funktion in Sekunden;
-    \item \texttt{limit} beschreibt die verwendete maximale Rekursionstiefe;
-    \item \texttt{cache\_hit} ist die Anzahl der Berechnungen, die durch die Transpositionstabelle (\texttt{cache}) eingespart werden konnten;
-    \item \texttt{cache\_miss} hingegen ist die
-    Anzahl der Berechnungen, die trotz der Transpositionstablle durchgeführt
-    werden mussten.
+\tightlist
+\item
+  \texttt{runtime} ist die Rechendauer der Funktion in Sekunden;
+\item
+  \texttt{limit} beschreibt die verwendete maximale Rekursionstiefe;
+\item
+  \texttt{cache\_hit} ist die Anzahl der Berechnungen, die durch die
+  Transpositionstabelle (\texttt{cache}) eingespart werden konnten;
+\item
+  \texttt{cache\_miss} hingegen ist die Anzahl der Berechnungen, die
+  trotz der Transpositionstablle durchgeführt werden mussten.
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -2256,17 +2321,16 @@ Algorithmus abbilden:
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
 
-    
-    \hypertarget{ux3b1-ux3b2-pruning}{%
-\section{$\alpha$-$\beta$-Pruning}\label{ux3b1-ux3b2-pruning}}
+
+
+
+
+
+
+
+\hypertarget{ux3b1-ux3b2-pruning}{%
+\subsection{$\alpha$-$\beta$-Pruning}\label{ux3b1-ux3b2-pruning}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -2280,12 +2344,14 @@ Algorithmus abbilden:
 \end{tcolorbox}
 
     Für die Implementierung des \emph{$\alpha$-$\beta$-Pruning} Algorithmus wird eine
-Klasse \texttt{AlphaBetaPruning} implementiert, die ebenfalls von der
-zuvor definierten Klasse \texttt{ArtificialIntelligence} erbt. Auch hier
-wird die Funktion \texttt{bestMoves} überschrieben, die später genauer
-definiert wird, und den Konstruktor \texttt{\_\_init\_\_} implementiert.
-Der Konstruktor besitzt drei optionale Parameter, die den Algorithmus
-konfigurieren können:
+Klasse \texttt{AlphaBetaPruning} implementiert, die von der zuvor
+definierten Klasse \texttt{ArtificialIntelligence} erbt. Hier wird
+zunächst die Funktion \texttt{bestMoves} überschrieben, da diese vom
+\texttt{ABC} Paket sonst fälschlicherweise als abstrakt erkannt werden
+würde. Im weiteren Verlauf des Notebooks wird sie implementiert. Der
+Konstruktor \texttt{\_\_init\_\_} erhält bereits hier seine
+Implementierung und besitzt drei optionale Parameter, die den
+Algorithmus konfigurieren können:
 
 \begin{itemize}
 \tightlist
@@ -2305,6 +2371,38 @@ Zusätzlich initialisiert der Konstruktor das Attribute \texttt{cache}
 mit einem leeren \texttt{dict}. Dieses wird später als
 Transpositionstabelle, bzw. als Sortierungsgrundlage in der Funktion
 \texttt{orderMoves} für \emph{Iterative Deepening} verwendet.
+
+Der Standardwert für das \texttt{weights} Attribut muss explizit im
+Funktionsrumpf gesetzt werden, damit Probleme bei der späteren
+Verwendung des \texttt{multiprocessing} Paketes verhindert werden
+können.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Wenn der Standardwert bereits in der Funktionssignatur gesetzt wird,
+  wird dieser Wert beim ersten Laden der \texttt{AlphaBetaPruning}
+  Klasse gespeichert. Dieser Wert beinhaltet dann eine Instanz der
+  unmittelbar zuvor geladenen \texttt{HeuristicWeights} Klasse.
+\item
+  Lädt man darauf hin das \texttt{Minimax} Notebook, dann lädt dieses
+  die \texttt{HeuristicWeights} Klasse erneut. Dabei wird jedoch eine
+  neue Klasse unter dem gleichen Namen, aber an einem anderen Ort im
+  Arbeitsspeicher angelegt.
+\item
+  Wird nun ebenso der Standardwert des \texttt{weights} Parameters im
+  \texttt{Minimax} Algorithmus beim ersten Laden gesetzt, dann teilen
+  sich zwar beide Standardwerte die gleiche Implementierung der
+  \texttt{HeuristikWeights} Klasse, zeigen jedoch auf verschiedene
+  Adressen im Arbeitsspeicher.
+\item
+  Dies wird zum Problem, wenn die Objekte mit Hilfe des \texttt{pickel}
+  Paketes serialisiert werden, damit sie im \texttt{multiprocessing}
+  Paket über die Threadgrenzen gesendet werden können. Hier wird ein
+  Fehler ausgelöst, wenn der Name der Klassen übereinstimmt, jedoch auf
+  verschiedene Adressen im Speicher verwiesen wird.
+\end{enumerate}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -2362,9 +2460,10 @@ Die gewünschte maximale Anzahl an Zuständen \texttt{maxCount} kann im
 \texttt{AlphaBetaPruning}-Konstruktor mit Hilfe der Option
 \texttt{max\_states} festgelegt werden.
 
-{\textbf{Exception für das Erreichen der maximalen
+\hypertarget{exception-fuxfcr-das-erreichen-der-maximalen-zustuxe4nden-iterativemaxcountexception}{%
+\paragraph{\texorpdfstring{Exception für das Erreichen der maximalen
 Zuständen
-\texttt{IterativeMaxCountException}}
+\texttt{IterativeMaxCountException}}{Exception für das Erreichen der maximalen Zuständen IterativeMaxCountException}}\label{exception-fuxfcr-das-erreichen-der-maximalen-zustuxe4nden-iterativemaxcountexception}}
 
 Die Exception \texttt{IterativeMaxCountException} wird aufgerufen, wenn
 ein Fehler aufgrund des Erreichens der maximal zu betrachtenden Zustände
@@ -2382,10 +2481,10 @@ Fehlermeldung wiedergeben zu können.
 \end{Verbatim}
 \end{tcolorbox}
 
-\clearpage
-\textbf{Hilfsfunktion zum Überprüfen der maximal zu
+    \hypertarget{hilfsfunktion-zum-uxfcberpruxfcfen-der-maximal-zu-besuchenden-zustuxe4nde-checkmaxstates}{%
+\paragraph{\texorpdfstring{Hilfsfunktion zum Überprüfen der maximal zu
 besuchenden Zustände
-\texttt{checkMaxStates}}
+\texttt{checkMaxStates}}{Hilfsfunktion zum Überprüfen der maximal zu besuchenden Zustände checkMaxStates}}\label{hilfsfunktion-zum-uxfcberpruxfcfen-der-maximal-zu-besuchenden-zustuxe4nde-checkmaxstates}}
 
 Die Hilfsfunktion \texttt{checkMaxStates} zählt die errechneten und
 besuchten Zustände für die Implementierung der \emph{iterativen
@@ -2407,7 +2506,8 @@ ist in der Funktion \texttt{bestMoves} implementiert.
 \end{Verbatim}
 \end{tcolorbox}
 
-\textbf{Sortieren der Zustände}\label{sortieren-der-zustuxe4nde}
+    \hypertarget{sortieren-der-zustuxe4nde}{%
+\paragraph{Sortieren der Zustände}\label{sortieren-der-zustuxe4nde}}
 
 Die Funktion \texttt{orderMoves} sortiert eine Liste von Zuständen
 \texttt{states} für einen Spieler \texttt{player} entsprechend der für
@@ -2435,9 +2535,10 @@ Teilbäume eventuell früher abschneiden lassen.
 \subsubsection{\texorpdfstring{Implementierung
 \emph{$\alpha$-$\beta$-Pruning}}{Implementierung $\alpha$-$\beta$-Pruning}}\label{implementierung-ux3b1-ux3b2-pruning}}
 
-\textbf{Hilfsfunktion zum Füllen der
+\hypertarget{hilfsfunktion-zum-fuxfcllen-der-transpositionstabelle-writecache}{%
+\paragraph{\texorpdfstring{Hilfsfunktion zum Füllen der
 Transpositionstabelle
-\texttt{writeCache}}
+\texttt{writeCache}}{Hilfsfunktion zum Füllen der Transpositionstabelle writeCache}}\label{hilfsfunktion-zum-fuxfcllen-der-transpositionstabelle-writecache}}
 
 Die Hilfsfunktion \texttt{writeCache} legt den gegebenen Zustand
 \texttt{state} und Spieler \texttt{player} mit samt der errechneten
@@ -2461,9 +2562,10 @@ Spielfelder in der Transpositionstabelle gespeichert.
 \end{Verbatim}
 \end{tcolorbox}
 
-\textbf{Hilfsfunktion zum Abgleich mit der
+    \hypertarget{hilfsfunktion-zum-abgleich-mit-der-transpositionstabelle-value}{%
+\paragraph{\texorpdfstring{Hilfsfunktion zum Abgleich mit der
 Transpositionstabelle
-\texttt{value}}
+\texttt{value}}{Hilfsfunktion zum Abgleich mit der Transpositionstabelle value}}\label{hilfsfunktion-zum-abgleich-mit-der-transpositionstabelle-value}}
 
 Die \texttt{value} Funktion ist ein Wrapper für die eigentliche
 Implementierung des \emph{$\alpha$-$\beta$-Pruning} in der Funktion
@@ -2511,9 +2613,10 @@ ein Zähler erhöht.
 \end{Verbatim}
 \end{tcolorbox}
 
-\textbf{Funktion zur Berechnung des Wertes eines
+    \hypertarget{funktion-zur-berechnung-des-wertes-eines-spielzustands-alphabeta}{%
+\paragraph{\texorpdfstring{Funktion zur Berechnung des Wertes eines
 Spielzustands
-\texttt{alphaBeta}}
+\texttt{alphaBeta}}{Funktion zur Berechnung des Wertes eines Spielzustands alphaBeta}}\label{funktion-zur-berechnung-des-wertes-eines-spielzustands-alphabeta}}
 
 Die Funktion \texttt{alphaBeta} beinhaltet nun die eigentliche
 Implementierung des \emph{$\alpha$-$\beta$-Pruning}.
@@ -2564,8 +2667,9 @@ Implementierung des \emph{$\alpha$-$\beta$-Pruning}.
 \end{Verbatim}
 \end{tcolorbox}
 
-\textbf{Funktion zur Auswahl des bestmöglichen Zuges
-\texttt{bestMoves}}
+    \hypertarget{funktion-zur-auswahl-des-bestmuxf6glichen-zuges-bestmoves}{%
+\paragraph{\texorpdfstring{Funktion zur Auswahl des bestmöglichen Zuges
+\texttt{bestMoves}}{Funktion zur Auswahl des bestmöglichen Zuges bestMoves}}\label{funktion-zur-auswahl-des-bestmuxf6glichen-zuges-bestmoves}}
 
 Die Funktion \texttt{bestMoves} berechnet rekursiv den geschätzten Wert
 aller möglichen Züge für einen Spieler \texttt{player} und wählt die
@@ -2582,13 +2686,27 @@ Zusätzlich werden Informationen gesammelt, die die genaueren Abläufe im
 Algorithmus abbilden:
 
 \begin{itemize}
-    \item \texttt{runtime} ist die Rechendauer der Funktion in Sekunden;
-    \item \texttt{limit} ist die erreichte maximale Rekursionstiefe;
-    \item \texttt{visited} ist die Anzahl der besuchten Zustände;
-    \item \texttt{max\_states} ist die Anzahl der maximal zu besuchenden Zustände;
-    \item \texttt{cache\_hit} ist die Anzahl der Berechenungen, die durch die Tanspositionstabelle (\texttt{cache}) eingespart werden konnten;
-    \item \texttt{cache\_invalid} ist die Anzahl der Berechnungen, die durchgeführt werden mussten, da der in der Transpositionstabelle vorhandene Wert nicht zu verwenden war;
-    \item \texttt{cache\_miss} ist die Anzahl der Berechnungen, die trotz der Transpositionstabelle durchgeführt werden mussten, da kein Eintrag gefunden wurde.    
+\tightlist
+\item
+  \texttt{runtime} ist die Rechendauer der Funktion in Sekunden;
+\item
+  \texttt{limit} ist die erreichte maximale Rekursionstiefe;
+\item
+  \texttt{visited} ist die Anzahl der besuchten Zustände;
+\item
+  \texttt{max\_states} ist die Anzahl der maximal zu besuchenden
+  Zustände;
+\item
+  \texttt{cache\_hit} ist die Anzahl der Berechenungen, die durch die
+  Tanspositionstabelle (\texttt{cache}) eingespart werden konnten;
+\item
+  \texttt{cache\_invalid} ist die Anzahl der Berechnungen, die
+  durchgeführt werden mussten, da der in der Transpositionstabelle
+  vorhandene Wert nicht zu verwenden war;
+\item
+  \texttt{cache\_miss} ist die Anzahl der Berechnungen, die trotz der
+  Transpositionstabelle durchgeführt werden mussten, da kein Eintrag
+  gefunden wurde.
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -2641,16 +2759,15 @@ Algorithmus abbilden:
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
 
 
-    \hypertarget{hilfsfunktionen-fuxfcr-die-grafische-oberfluxe4che}{%
+
+
+
+
+
+
+\hypertarget{hilfsfunktionen-fuxfcr-die-grafische-oberfluxe4che}{%
 \section{Hilfsfunktionen für die grafische
 Oberfläche}\label{hilfsfunktionen-fuxfcr-die-grafische-oberfluxe4che}}
 
@@ -2766,9 +2883,16 @@ Abbildung sind diese genauer erklärt.
 \subsubsection{Text}\label{text}}
 
 In der GUI gibt es drei verschiedene Textarten:
+
 \begin{itemize}
-    \item Spielnachricht (wer spielt gerade oder ob das Spiel beendet ist),
-    \item Hinweise (falls zum Beispiel eine ungültige Aktion ausgeführt worden ist) und - Informationen über den letzten Zug der künstlichen Intelligenz.
+\tightlist
+\item
+  Spielnachricht (wer spielt gerade oder ob das Spiel beendet ist),
+\item
+  Hinweise (falls zum Beispiel eine ungültige Aktion ausgeführt worden
+  ist) und
+\item
+  Informationen über den letzten Zug der künstlichen Intelligenz.
 \end{itemize}
 
 Diese Textarten haben eine eigene Schriftart, -größe und -farbe.
@@ -3127,7 +3251,11 @@ Zeichenfläche befindet.
             \PY{n}{c}\PY{o}{.}\PY{n}{fill\PYZus{}text}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Information from last move:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{TEXT\PYZus{}X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{max\PYZus{}width} \PY{o}{=} \PY{n}{TEXT\PYZus{}MAX\PYZus{}WIDTH}\PY{p}{)}
             \PY{n}{y} \PY{o}{+}\PY{o}{=} \PY{n}{TEXT\PYZus{}VERTICAL\PYZus{}PADDING}
             \PY{k}{for} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)} \PY{o+ow}{in} \PY{n}{information}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
-                \PY{n}{c}\PY{o}{.}\PY{n}{fill\PYZus{}text}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{   }\PY{l+s+si}{\PYZob{}}\PY{n}{key}\PY{o}{.}\PY{n}{ljust}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZob{}}\PY{n}{value}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{TEXT\PYZus{}X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{max\PYZus{}width} \PY{o}{=} \PY{n}{TEXT\PYZus{}MAX\PYZus{}WIDTH}\PY{p}{)}
+                \PY{k}{if} \PY{p}{(}\PY{n+nb}{isinstance}\PY{p}{(}\PY{n}{value}\PY{p}{,} \PY{n+nb}{int}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{txt} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}:,\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{value}\PY{p}{)}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{n}{txt} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}:,.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{value}\PY{p}{)}
+                \PY{n}{c}\PY{o}{.}\PY{n}{fill\PYZus{}text}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{   }\PY{l+s+si}{\PYZob{}}\PY{n}{key}\PY{o}{.}\PY{n}{ljust}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZob{}}\PY{n}{txt}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{TEXT\PYZus{}X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{max\PYZus{}width} \PY{o}{=} \PY{n}{TEXT\PYZus{}MAX\PYZus{}WIDTH}\PY{p}{)}
                 \PY{n}{y} \PY{o}{+}\PY{o}{=} \PY{n}{TEXT\PYZus{}VERTICAL\PYZus{}PADDING}
 \end{Verbatim}
 \end{tcolorbox}
@@ -3397,12 +3525,24 @@ zwischen zwei Zuständen. Die Funktion hat drei Argumente:
 
 Die Funktion gibt ein Zwei-Tupel der Form
 \texttt{\textless{}movedStone,\ poundedStones\textgreater{}} mit
-\begin{enumerate}
-    \item \texttt{movedStone} ist die Koordinate des bewegten Steins des Spielers;
-    \item \texttt{poundedStones} ist eine Menge von Zwei-Tupeln der Form \texttt{\textless{}op,\ coord\textgreater{}} mit
-    \item \texttt{op} ist der Gegenspieler;
-    \item \texttt{coord} ist die Koordinate des geschlagenden Steines;
-\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{movedStone} ist die Koordinate des bewegten Steins des
+  Spielers;
+\item
+  \texttt{poundedStones} ist eine Menge von Zwei-Tupeln der Form
+  \texttt{\textless{}op,\ coord\textgreater{}} mit
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{op} ist der Gegenspieler;
+  \item
+    \texttt{coord} ist die Koordinate des geschlagenden Steines;
+  \end{itemize}
+\end{itemize}
 
 zurück.
 
@@ -3428,15 +3568,15 @@ zurück.
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
 
-    \hypertarget{grafische-oberfluxe4che}{%
+
+
+
+
+
+
+
+\hypertarget{grafische-oberfluxe4che}{%
 \section{Grafische Oberfläche}\label{grafische-oberfluxe4che}}
 
 In diesem Notebook ist das Spielen in der GUI implementiert. Die
@@ -3457,16 +3597,52 @@ Mühle-Spiel in der GUI.
 
 Der Konstruktur der Klasse hat elf Eingabeparameter, die alle optional
 sind:
-\begin{itemize}
-    \item \texttt{state} ist der Startzustand für das Spiel. Standardmäßig wird das Spiel mit \texttt{s0} gestartet, welches ein leeres Spielfeld darstellt;
-    \item \texttt{player} definiert den Spieler, der den ersten Zug spielt. Standardmäßig wird das Spiel mit dem weißen Spieler (\texttt{w}) gestartet;
-    \item \texttt{algorithm1} definiert, ob und welcher Algorithmus für den weißen Spieler spielt. Standardmäßig wird der Spieler von einem Menschen gespielt (\texttt{None}). Für \emph{$\alpha$-$\beta$-Pruning} ist eine Instanz der Klasse \texttt{AlphaBetaPruning} zu übergeben und für \emph{Minimax} eine Instanz der Klasse \texttt{Minimax}.
-    \item \texttt{algorithm2} definiert, ob und welcher Algorithmus für den schwarzen Spieler spielt. Standardmäßig wird der Spieler von einem Menschen gespielt (\texttt{None}). Für \emph{$\alpha$-$\beta$-Pruning} ist eine Instanz der Klasse \texttt{AlphaBetaPruning} zu übergeben und für \emph{Minimax} eine Instanz der Klasse \texttt{Minimax}.
-    \item \texttt{timeout} definiert einen Timeout in Sekunden, der nach einem Computer-Zug gesetzt wird. Dies dient dazu, die Übersichtlichkeit zu erhöhen, wenn Computer gegen Computer spielt. Standardmäßig gibt es keinen Timeout (\texttt{None});
-    \item \texttt{stepwise} ist ein boolischer Wert und gibt an, ob das Spiel bei Computer gegen Computer im Einzelschrittmodus gespielt wird. Das bedeutet, nach jedem Computerzug muss der nächste Computerzug manuell begonnen werden. Standardmäßig ist der Einzelschrittmodus deaktiviert (\texttt{False});
-    \item \texttt{limitMovesWithoutMill} ist eine Ganzzahl, die angibt, wie viele Züge ohne geschlagende Mühle gespielt werden können. Ist das Limit überschritten, endet das Spiel in einem Unentschieden. Der Standardwert ist \texttt{30}. Um dieses Limit auszuschalten, muss der Wert auf \texttt{None} gesetzt werden;
-    \item \texttt{limitStatesCounter} ist eine Ganzzahl, die angibt, wie oft ein gleicher Zustand gespielt werden kann. Ist das Limit überschritten, endet das Spiel in einem Unentschieden. Der Standardwert ist \texttt{5}. Um dieses Limit auszuschalten, muss der Wert auf \texttt{None} gesetzt werden;
 
+\begin{itemize}
+\tightlist
+\item
+  \texttt{state} ist der Startzustand für das Spiel. Standardmäßig wird
+  das Spiel mit \texttt{s0} gestartet, welches ein leeres Spielfeld
+  darstellt;
+\item
+  \texttt{player} definiert den Spieler, der den ersten Zug spielt.
+  Standardmäßig wird das Spiel mit dem weißen Spieler (\texttt{w})
+  gestartet;
+\item
+  \texttt{algorithm1} definiert, ob und welcher Algorithmus für den
+  weißen Spieler spielt. Standardmäßig wird der Spieler von einem
+  Menschen gespielt (\texttt{None}). Für \emph{$\alpha$-$\beta$-Pruning} ist eine
+  Instanz der Klasse \texttt{AlphaBetaPruning} zu übergeben und für
+  \emph{Minimax} eine Instanz der Klasse \texttt{Minimax}.
+\item
+  \texttt{algorithm2} definiert, ob und welcher Algorithmus für den
+  schwarzen Spieler spielt. Standardmäßig wird der Spieler von einem
+  Menschen gespielt (\texttt{None}). Für \emph{$\alpha$-$\beta$-Pruning} ist eine
+  Instanz der Klasse \texttt{AlphaBetaPruning} zu übergeben und für
+  \emph{Minimax} eine Instanz der Klasse \texttt{Minimax}.
+\item
+  \texttt{timeout} definiert einen Timeout in Sekunden, der nach einem
+  Computer-Zug gesetzt wird. Dies dient dazu, die Übersichtlichkeit zu
+  erhöhen, wenn Computer gegen Computer spielt. Standardmäßig gibt es
+  keinen Timeout (\texttt{None});
+\item
+  \texttt{stepwise} ist ein boolischer Wert und gibt an, ob das Spiel
+  bei Computer gegen Computer im Einzelschrittmodus gespielt wird. Das
+  bedeutet, nach jedem Computerzug muss der nächste Computerzug manuell
+  begonnen werden. Standardmäßig ist der Einzelschrittmodus deaktiviert
+  (\texttt{False});
+\item
+  \texttt{limitMovesWithoutMill} ist eine Ganzzahl, die angibt, wie
+  viele Züge ohne geschlagende Mühle gespielt werden können. Ist das
+  Limit überschritten, endet das Spiel in einem Unentschieden. Der
+  Standardwert ist \texttt{30}. Um dieses Limit auszuschalten, muss der
+  Wert auf \texttt{None} gesetzt werden;
+\item
+  \texttt{limitStatesCounter} ist eine Ganzzahl, die angibt, wie oft ein
+  gleicher Zustand gespielt werden kann. Ist das Limit überschritten,
+  endet das Spiel in einem Unentschieden. Der Standardwert ist
+  \texttt{5}. Um dieses Limit auszuschalten, muss der Wert auf
+  \texttt{None} gesetzt werden;
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -4115,16 +4291,15 @@ Einzelschrittmodus gespielt.
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
 
-    
-    \hypertarget{tunier}{%
+
+
+
+
+
+
+
+\hypertarget{tunier}{%
 \section{Tunier}\label{tunier}}
 
 Damit unterschiedliche Algorithmen und deren Einstellungen vergleichen
@@ -4173,26 +4348,53 @@ Klasse erwartet zwei verpflichtende Argumente und sechs optionale
 Argumente:
 
 Verpflichtend:
+
 \begin{itemize}
-    \item \texttt{white} ist eine Instanz einer \texttt{ArtificialIntelligence}, die den weißen Spieler spielen wird;
-    \item \texttt{black} ist eine Instanz einer \texttt{ArtificialIntelligence}, die den schwarzen Spieler spielen wird;
+\tightlist
+\item
+  \texttt{white} ist eine Instanz einer \texttt{ArtificialIntelligence},
+  die den weißen Spieler spielen wird;
+\item
+  \texttt{black} ist eine Instanz einer \texttt{ArtificialIntelligence},
+  die den schwarzen Spieler spielen wird;
 \end{itemize}
 
 Optional:
+
 \begin{itemize}
-    \item \texttt{start\_state} ist der Startzustand, der verwendet werden soll, standardmäßig \texttt{s0};
-    \item \texttt{start\_player} ist der Spieler, der das Spiel beginnen soll, standardmäig \texttt{w};
-    \item \texttt{max\_turns} ist die maximale Anzahl an Zügen, die das Spiel dauern darf, bevor es in einem Remis endet, standardmäßig \texttt{250};
-    \item \texttt{max\_state\_replayed} ist die maximale Anzahl die ein Zug nochmal gespielt werden darf, bevor das Spiel in einem Remis endet, standardmäßig \texttt{5};
-    \item \texttt{max\_states\_without\_mill} ist die maximale Anzahl von aufeinanderfolgenden Zügen in denen kein Stein geschlagen wurde, bevor das Spiel in einem Remis endet, standardmäßig \texttt{30};
-    \item \texttt{name} ein optionaler Name für das Spiel.
+\tightlist
+\item
+  \texttt{start\_state} ist der Startzustand, der verwendet werden soll,
+  standardmäßig \texttt{s0};
+\item
+  \texttt{start\_player} ist der Spieler, der das Spiel beginnen soll,
+  standardmäßig \texttt{w};
+\item
+  \texttt{max\_turns} ist die maximale Anzahl an Zügen, die das Spiel
+  dauern darf, bevor es in einem Remis endet, standardmäßig
+  \texttt{250};
+\item
+  \texttt{max\_state\_replayed} ist die maximale Anzahl, die eine
+  Stellung nochmal gespielt werden darf, bevor das Spiel in einem Remis
+  endet, standardmäßig \texttt{5};
+\item
+  \texttt{max\_moves\_without\_mill} ist die maximale Anzahl von
+  aufeinanderfolgenden Zügen in denen kein Stein geschlagen wurde, bevor
+  das Spiel in einem Remis endet, standardmäßig \texttt{30};
+\item
+  \texttt{name} ein optionaler Name für das Spiel.
 \end{itemize}
 
 Des Weiteren werden zwei Attribute initialisiert, die für den
 Spielverlauf nötig sind:
+
 \begin{itemize}
-    \item \texttt{log} der Verlauf aller Zustände;
-    \item \texttt{no\_mill\_played} die Anzahl der letzten Züge ohne eine neue Mühle.
+\tightlist
+\item
+  \texttt{log} der Verlauf aller Zustände;
+\item
+  \texttt{no\_mill\_played} die Anzahl der letzten Züge ohne eine neue
+  Mühle.
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -4203,7 +4405,7 @@ Spielverlauf nötig sind:
         \PY{n+nb+bp}{self}\PY{p}{,}
         \PY{n}{white}\PY{p}{:} \PY{n}{ArtificialIntelligence}\PY{p}{,} \PY{n}{black}\PY{p}{:} \PY{n}{ArtificialIntelligence}\PY{p}{,}
         \PY{n}{start\PYZus{}state} \PY{o}{=} \PY{n}{s0}\PY{p}{,} \PY{n}{start\PYZus{}player} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-        \PY{n}{max\PYZus{}turns}\PY{p}{:} \PY{n+nb}{int} \PY{o}{=} \PY{l+m+mi}{250}\PY{p}{,} \PY{n}{max\PYZus{}state\PYZus{}replayed}\PY{p}{:} \PY{n+nb}{int} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{,} \PY{n}{max\PYZus{}states\PYZus{}without\PYZus{}mill}\PY{p}{:} \PY{n+nb}{int} \PY{o}{=} \PY{l+m+mi}{30}\PY{p}{,}
+        \PY{n}{max\PYZus{}turns}\PY{p}{:} \PY{n+nb}{int} \PY{o}{=} \PY{l+m+mi}{250}\PY{p}{,} \PY{n}{max\PYZus{}state\PYZus{}replayed}\PY{p}{:} \PY{n+nb}{int} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{,} \PY{n}{max\PYZus{}moves\PYZus{}without\PYZus{}mill}\PY{p}{:} \PY{n+nb}{int} \PY{o}{=} \PY{l+m+mi}{30}\PY{p}{,}
         \PY{n}{name}\PY{p}{:} \PY{n+nb}{str} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
     \PY{p}{)}\PY{p}{:}
         \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{white} \PY{o}{=} \PY{n}{white}
@@ -4213,7 +4415,7 @@ Spielverlauf nötig sind:
         \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{player} \PY{o}{=} \PY{n}{start\PYZus{}player}
         \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}turns} \PY{o}{=} \PY{n}{max\PYZus{}turns}
         \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}state\PYZus{}replayed} \PY{o}{=} \PY{n}{max\PYZus{}state\PYZus{}replayed}
-        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}states\PYZus{}without\PYZus{}mill} \PY{o}{=} \PY{n}{max\PYZus{}states\PYZus{}without\PYZus{}mill}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}moves\PYZus{}without\PYZus{}mill} \PY{o}{=} \PY{n}{max\PYZus{}moves\PYZus{}without\PYZus{}mill}
         \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{name}
         
         \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{log} \PY{o}{=} \PY{p}{[}\PY{n}{start\PYZus{}state}\PY{p}{]}
@@ -4232,7 +4434,7 @@ Klasse beinhaltet.
 \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}repr\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{:} \PY{n}{Match}\PY{p}{)}\PY{p}{:}
     \PY{k}{return} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Match(name=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, white=}\PY{l+s+si}{\PYZob{}}\PY{n+nb}{type}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{white}\PY{p}{)}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PYZbs{}
            \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{black=}\PY{l+s+si}{\PYZob{}}\PY{n+nb}{type}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{black}\PY{p}{)}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, max\PYZus{}turns=}\PY{l+s+si}{\PYZob{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}turns}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PYZbs{}
-           \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{max\PYZus{}state\PYZus{}replayed=}\PY{l+s+si}{\PYZob{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}state\PYZus{}replayed}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, max\PYZus{}states\PYZus{}without\PYZus{}mill=}\PY{l+s+si}{\PYZob{}}\PY{n}{max\PYZus{}states\PYZus{}without\PYZus{}mill}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}
+           \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{max\PYZus{}state\PYZus{}replayed=}\PY{l+s+si}{\PYZob{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}state\PYZus{}replayed}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, max\PYZus{}moves\PYZus{}without\PYZus{}mill=}\PY{l+s+si}{\PYZob{}}\PY{n}{max\PYZus{}moves\PYZus{}without\PYZus{}mill}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}
 
 \PY{n}{Match}\PY{o}{.}\PY{n+nf+fm}{\PYZus{}\PYZus{}repr\PYZus{}\PYZus{}} \PY{o}{=} \PY{n+nf+fm}{\PYZus{}\PYZus{}repr\PYZus{}\PYZus{}}
 \PY{k}{del} \PY{n+nf+fm}{\PYZus{}\PYZus{}repr\PYZus{}\PYZus{}}
@@ -4249,10 +4451,17 @@ werden.
 
 Ein \texttt{MatchResult} besteht aus drei Attributen, die im Konstruktor
 gesetzt werden müssen:
+
 \begin{itemize}
-    \item \texttt{winner} \(\in Player \cup \{'\ '\}\), der Gewinner (oder Remis) des Spieles;
-    \item \texttt{log} ist die chronologische Liste aller gespielen Zustände;
-    \item \texttt{reason} eine Zeichenkette die genauer beschreibt warum das Spiel endete.
+\tightlist
+\item
+  \texttt{winner} \(\in Player \cup \{'\ '\}\), der Gewinner (oder
+  Remis) des Spieles;
+\item
+  \texttt{log} ist die chronologische Liste aller gespielen Zustände;
+\item
+  \texttt{reason} eine Zeichenkette die genauer beschreibt warum das
+  Spiel endete.
 \end{itemize}
 
 Für Entwicklungszwecke wird hier ebenfalls eine Stringdarstellung für
@@ -4290,21 +4499,27 @@ KI-Instanz zurück, die gerade am Zug ist.
 \end{Verbatim}
 \end{tcolorbox}
 
-    Die Hilfsfunktion \texttt{check\_remis} überprüft, ob der aktuelle
+    Die Hilfsfunktion \texttt{check\_draw} überprüft, ob der aktuelle
 Zustand und Spieler zu einem Remis führen. Ist dies der Fall, wird ein
 entsprechendes \texttt{MatchResult} mit Begründung, ansonsten
 \texttt{None}, zurückgegeben. Gründe für ein Remis sind:
 
 \begin{itemize}
-    \item die maximale Anzahl an Zügen wurde gespielt - \texttt{max\_turns};
-    \item ein Zug wurde öfter als maximal erlaubt gespielt - \texttt{max\_state\_replayed};
-    \item die maximale Anzahl an Zügen ohne eine neue Mühle wurde gespielt - \texttt{max\_states\_without\_mill}.
+\tightlist
+\item
+  die maximale Anzahl an Zügen wurde gespielt - \texttt{max\_turns};
+\item
+  eine Stellung wurde öfter als maximal erlaubt gespielt -
+  \texttt{max\_state\_replayed};
+\item
+  die maximale Anzahl an Zügen ohne eine neue Mühle wurde gespielt -
+  \texttt{max\_moves\_without\_mill}.
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k}{def} \PY{n+nf}{check\PYZus{}remis}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{:} \PY{n}{Match}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{Optional}\PY{p}{[}\PY{n}{MatchResult}\PY{p}{]}\PY{p}{:}
+\PY{k}{def} \PY{n+nf}{check\PYZus{}draw}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{:} \PY{n}{Match}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{Optional}\PY{p}{[}\PY{n}{MatchResult}\PY{p}{]}\PY{p}{:}
     \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{log}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}turns}\PY{p}{:}
         \PY{k}{return} \PY{n}{MatchResult}\PY{p}{(}
             \PY{n}{winner} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
@@ -4316,48 +4531,48 @@ entsprechendes \texttt{MatchResult} mit Begründung, ansonsten
         \PY{k}{return} \PY{n}{MatchResult}\PY{p}{(}
             \PY{n}{winner} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
             \PY{n}{log}    \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{log}\PY{p}{,}
-            \PY{n}{reason} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{State has been replayed for }\PY{l+s+si}{\PYZob{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{log}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{state}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ turns}\PY{l+s+s2}{\PYZdq{}}
+            \PY{n}{reason} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{State has been replayed for }\PY{l+s+si}{\PYZob{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{log}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{state}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ times}\PY{l+s+s2}{\PYZdq{}}
         \PY{p}{)}
     
-    \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{no\PYZus{}mill\PYZus{}played} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}states\PYZus{}without\PYZus{}mill}\PY{p}{:}
+    \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{no\PYZus{}mill\PYZus{}played} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{max\PYZus{}moves\PYZus{}without\PYZus{}mill}\PY{p}{:}
         \PY{k}{return} \PY{n}{MatchResult}\PY{p}{(}
             \PY{n}{winner} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
             \PY{n}{log}    \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{log}\PY{p}{,}
-            \PY{n}{reason} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{No mill has been played for }\PY{l+s+si}{\PYZob{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{no\PYZus{}mill\PYZus{}played}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ turns}\PY{l+s+s2}{\PYZdq{}}
+            \PY{n}{reason} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{No mill has been played for }\PY{l+s+si}{\PYZob{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{no\PYZus{}mill\PYZus{}played}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ moves}\PY{l+s+s2}{\PYZdq{}}
         \PY{p}{)}
     \PY{k}{return} \PY{k+kc}{None}
 
-\PY{n}{Match}\PY{o}{.}\PY{n}{check\PYZus{}remis} \PY{o}{=} \PY{n}{check\PYZus{}remis}
-\PY{k}{del} \PY{n}{check\PYZus{}remis}
+\PY{n}{Match}\PY{o}{.}\PY{n}{check\PYZus{}draw} \PY{o}{=} \PY{n}{check\PYZus{}draw}
+\PY{k}{del} \PY{n}{check\PYZus{}draw}
 \end{Verbatim}
 \end{tcolorbox}
 
-    Um ein Spiel zu spielen wird die Funktion \texttt{player} implementiert,
+    Um ein Spiel zu spielen wird die Funktion \texttt{play} implementiert,
 diese bedient sich der im \texttt{Match} gespeicherten Einstellungen und
 Daten.
 
 Prinzipiell unendlich lang sind die Spieler abwechselnd am Zug und
 spielen ihren am besten berechneten Zug. Ein Spiel endet sobald per
 \texttt{finished} Funktion ein Gewinner ermittelt wurde oder per
-\texttt{check\_remis} Hilfsfunktion ein Remis beschlossen wurde. Ist
-dies nicht der Fall, wird der aktuelle Teilnehmer nach dem nächsten
-(besten) Zug befragt, dieser wird gespeichert und der Gegner ist am Zug.
+\texttt{check\_draw} Hilfsfunktion ein Remis beschlossen wurde. Ist dies
+nicht der Fall, wird der aktuelle Teilnehmer nach dem nächsten (besten)
+Zug befragt, dieser wird gespeichert und der Gegner ist am Zug.
 
-Da nach einer undefinierten Anzahl an Zügen entweder \texttt{finished}
-oder \texttt{check\_remis} ein Ergebnis liefern, wird immer eine
-\texttt{MatchResult} Instanz zurückgegeben.
+Spätestens beim Erreichen der maximalen Anzahl an Spielzügen (definiert
+in \texttt{self.max\_turns}) wird durch \texttt{finished} oder
+\texttt{check\_draw} eine \texttt{MatchResult} Instanz zurückgegeben.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{play}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{:} \PY{n}{Match}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{MatchResult}\PY{p}{:}
     \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
-        \PY{n}{remis} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{check\PYZus{}remis}\PY{p}{(}\PY{p}{)}
-        \PY{k}{if} \PY{n}{remis} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
-            \PY{k}{return} \PY{n}{remis}
+        \PY{n}{draw} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{check\PYZus{}draw}\PY{p}{(}\PY{p}{)}
+        \PY{k}{if} \PY{n}{draw} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+            \PY{k}{return} \PY{n}{draw}
         
         \PY{k}{if} \PY{n}{finished}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{state}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{player}\PY{p}{)}\PY{p}{:}
-            \PY{c+c1}{\PYZsh{} Remis was already checked}
+            \PY{c+c1}{\PYZsh{} Draw was already checked}
             \PY{n}{winner} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{player} \PY{k}{if} \PY{n}{utility}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{state}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{player}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1} \PY{k}{else} \PY{n}{opponent}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{player}\PY{p}{)}
             \PY{k}{return} \PY{n}{MatchResult}\PY{p}{(}
                 \PY{n}{winner} \PY{o}{=} \PY{n}{winner}\PY{p}{,}
@@ -4399,13 +4614,54 @@ Prozess startet.
 \end{Verbatim}
 \end{tcolorbox}
 
+    Obwohl die
+\href{https://docs.python.org/3/library/multiprocessing.html\#introduction}{Dokumentation
+der Bibliothek} beschreibt, dass Windows unterstützt wird, gibt es
+Probleme falls diese mit \texttt{Jupyter} bzw. \texttt{IPython}
+verwendet wird. Im Hauptprozess scheint es zwar so, als würden die
+Prozesse gestartet worden sein, jedoch passiert ab dem Moment nichts
+mehr.
+
+Zwei mögliche Ansätze wurden verfolgt, um das beschriebene Problem zu
+lösen, konnten jedoch nicht sinnvoll umgesetzt werden:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Auslagerung der \texttt{execute} Funktion}: Hierzu muss die
+  \texttt{execute} Funktion in eine neue Python \texttt{.py} Datei
+  ausgelagert werden. Allerdings lassen sich hier die benötigten
+  Funktionen nicht aus den Jupyter Notebooks laden und müssten daher
+  manuell kopiert werden.
+\item
+  \textbf{\texttt{multiprocess} Paket}: Dieses alternative Paket stellt
+  die gleiche API zur Verfügung und funktioniert auch unter Windows.
+  Allerdings startet diese Bibliothek neue \texttt{Python}, anstatt
+  \texttt{IPython}, Prozesse. Dies führt dazu, dass der Prozess mit
+  einem Fehler abbricht, da Jupyter Notebooks nicht geladen werden
+  können.
+\end{enumerate}
+
     Die Klasse \texttt{Round} spiegelt solch eine Runde wieder und besitzt
 drei Parameter im Konstruktor:
+
 \begin{itemize}
-    \item \texttt{white} ist eine Instanz oder eine Funktion die eine \texttt{ArtificialIntelligence} produziert, die den weißen Spieler spielt;
-    \item \texttt{black} ist eine Instanz oder eine Funktion die eine \texttt{ArtificialIntelligence} produziert, die den schwarzen Spieler spielt;
-    \item \texttt{instances} ist die Anzahl der Spiele die gleichzeitig gestartet werden sollen;
-    \item \texttt{seed\_offset} ist die Zahl, die auf den Seed addiert werden soll.
+\tightlist
+\item
+  \texttt{white} ist eine Instanz oder eine Funktion die eine
+  \texttt{ArtificialIntelligence} produziert, die den weißen Spieler
+  spielt;
+\item
+  \texttt{black} ist eine Instanz oder eine Funktion die eine
+  \texttt{ArtificialIntelligence} produziert, die den schwarzen Spieler
+  spielt;
+\item
+  \texttt{instances} ist die Anzahl der Spiele die gleichzeitig
+  gestartet werden sollen;
+\item
+  \texttt{seed\_offset} ist die Zahl, die auf den Seed addiert werden
+  soll.
 \end{itemize}
 
 Die Parameter \texttt{white} und \texttt{black} können auch Funktionen
@@ -4450,7 +4706,15 @@ Klasse beinhaltet.
     Die Hilfsfunktion \texttt{execute} wird durch die Python Bibliothek
 \texttt{multiprocessing} innerhalb des neu erzeugten Prozesses
 ausgeführt. Sie setzt den Seed der Random-Funktion auf den Index der
-Runde damit verschiedene Spiele stattfinden und startet das Spiel.
+Runde damit verschiedene Spiele stattfinden und startet das Spiel. Dafür
+hat die Funktion einen Parameter:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{match} ist ein Dupel bestehend aus dem Seed und der Runde
+  eines Spiels.
+\end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
@@ -4500,23 +4764,31 @@ verglichen werden können, wurde ein Tunier implementiert. Die Klasse
 Parameter:
 
 Verpflichtend:
+
 \begin{itemize}
-\item \texttt{participants} ist eine Liste an Teilnehmer
-\texttt{ArtificialIntelligence} Instanzen oder Funktionen, die diese
-erzeugen;
+\tightlist
+\item
+  \texttt{participants} ist eine Liste an Teilnehmer
+  \texttt{ArtificialIntelligence} Instanzen oder Funktionen, die diese
+  erzeugen;
 \end{itemize}
 
 Optional:
+
 \begin{itemize}
-    \item \texttt{instances\_per\_round} ist die Anzahl der Spiele die
-pro Runde und pro Teilnehmer Konstellation gespielt werden soll;
-    \item \texttt{name} ist ein Name, der den Log-Dateien angehängt wird;
-    \item \texttt{skip} ist die Anzahl der Runden, die übersprungen werden sollen.
-Dies ist Hilfreich falls die Berechnungen abbrechen und fortgesetzt
-werden sollen;
-    \item \texttt{seed\_offset} ist die Zahl, die auf den Seed
-einer Runde addiert werden soll. So können Runden in Teilen ausgerechnet
-werden.
+\tightlist
+\item
+  \texttt{instances\_per\_round} ist die Anzahl der Spiele die pro Runde
+  und pro Teilnehmer Konstellation gespielt werden soll;
+\item
+  \texttt{name} ist ein Name, der den Log-Dateien angehängt wird;
+\item
+  \texttt{skip} ist die Anzahl der Runden, die übersprungen werden
+  sollen. Dies ist Hilfreich falls die Berechnungen abbrechen und
+  fortgesetzt werden sollen;
+\item
+  \texttt{seed\_offset} ist die Zahl, die auf den Seed einer Runde
+  addiert werden soll. So können Runden in Teilen ausgerechnet werden.
 \end{itemize}
 
 Pro Spiel können durch die Transpositionstabelle bis zu 6 Gigabyte an
@@ -4549,12 +4821,15 @@ einer menschenlesbaren Datei, die nach dem Schema
 Parameter:
 
 \begin{itemize}
-    \item \texttt{idx} ist die Nummer der aktuellen Runde (wird um
-eins erhöht, um eine natürliche Zählung zu verwenden); 
-    \item \texttt{rnd}
-ist die aktuelle Runde;
-    \item \texttt{results} ist die Liste der Ergebnisse,
-die gespeichert werden soll.
+\tightlist
+\item
+  \texttt{idx} ist die Nummer der aktuellen Runde (wird um eins erhöht,
+  um eine natürliche Zählung zu verwenden);
+\item
+  \texttt{rnd} ist die aktuelle Runde;
+\item
+  \texttt{results} ist die Liste der Ergebnisse, die gespeichert werden
+  soll.
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -4572,7 +4847,7 @@ die gespeichert werden soll.
         \PY{n}{file}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{  black: }\PY{l+s+si}{\PYZob{}}\PY{n}{black}\PY{l+s+si}{\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
         
         \PY{n}{file}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Result:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-        \PY{n}{file}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{  remis: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{result}\PY{o}{.}\PY{n}{winner}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}} \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{results}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{file}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{  draw : }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{result}\PY{o}{.}\PY{n}{winner}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}} \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{results}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
         \PY{n}{file}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{  white: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{result}\PY{o}{.}\PY{n}{winner}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}} \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{results}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
         \PY{n}{file}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{  black: }\PY{l+s+si}{\PYZob{}}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{result}\PY{o}{.}\PY{n}{winner}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}} \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{results}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
         
@@ -4631,16 +4906,15 @@ selbst werden nicht durchgeführt.
 \end{tcolorbox}
 
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-    
-    
-    
 
-    
-    \hypertarget{fazit}{%
+
+
+
+
+
+
+
+\hypertarget{fazit}{%
 \section{Fazit}\label{fazit}}
 
 Das Ziel der Studienarbeit, eine künstliche Intelligenz für das
@@ -4659,7 +4933,6 @@ wurden bereits im Kapitel \emph{Turnier} vorgenommen.
 
 Jede gespielte Runde ist als Textdatei mit genauem Spielverlauf
 aufgezeichnet und in dem Ordner \href{./rounds}{rounds} zu finden.
-
 
     Das zuvor beschriebene Modul \emph{Turnier} muss geladen werden. Durch
 das Laden des Moduls werden bereits alle anderen nötigen Module wie
@@ -4788,7 +5061,7 @@ Jede Heuristik hat einmal als \emph{weiß} und einmal als \emph{schwarz}
 gegen jede andere Heuristik gespielt. Gegen sich selbst wurde nicht
 gespielt (siehe Diagonale ohne Daten).
 
-Der Bezeichner für jede Heurisik ist als Tupel aufgeschrieben, die
+Der Bezeichner für jede Heurisik ist als Tupel aufgeschrieben, das
 folgender Definition entspricht:
 \[\langle stones, stash, mills, possible\_mills \rangle\] Eine Zelle in
 der Tabelle stellt eine Runde dar und zählt die Anzahl der Spiele in
@@ -4845,19 +5118,31 @@ Algorithmen nötig machen. Im gleichen Zuge könnte dann jedoch eine
 schnellere, kompilierte Sprache für die Implementierung gewählt werden,
 beispielsweise \emph{C}, \emph{C++} oder \emph{Rust}.
 
-\clearpage
-
-\section{Literatur}
+    \hypertarget{literatur}{%
+\section{Literatur}\label{literatur}}
 
 \begin{itemize}
-    \item \emph{An Introduction to Artificial Intelligence}, Prof. Dr. Karl Stroetmann, 2020-2021
-    \item \emph{Depth-First Iterative-Deepening: An Optimal Admissible Tree Search}, Richard E. Korf, 1985
-    \item \emph{Turnierreglement}, WELTMÜHLESPIEL DACHVERBAND, 2019
-    \item \href{http://www.muehlespiel.eu/images/pdf/WMD_Spielregeln.pdf}{Mühlespiel}, WELTMÜHLESPIEL DACHVERBAND, 2018
+\tightlist
+\item
+  \emph{An Introduction to Artificial Intelligence}, Prof.~Dr.~Karl
+  Stroetmann, 2020-2021
+\item
+  \emph{Depth-First Iterative-Deepening: An Optimal Admissible Tree
+  Search}, Richard E. Korf, 1985
+\item
+  \emph{Turnierreglement}, WELTMÜHLESPIEL DACHVERBAND, 2019
+\item
+  \href{http://www.muehlespiel.eu/images/pdf/WMD_Spielregeln.pdf}{Mühlespiel},
+  WELTMÜHLESPIEL DACHVERBAND, 2018
 \end{itemize}
 
-    % Add a bibliography block to the postdoc
-    
-    
-    
-\end{document} 
+
+
+
+
+
+
+
+
+
+\end{document}
