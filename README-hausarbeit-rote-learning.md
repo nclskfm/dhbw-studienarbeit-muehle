@@ -13,4 +13,6 @@ Folgende Notebooks sind Teil der Hausarbeit und sollten in der angegebenen Reihe
 * `nmm-rote-learning.ipynb`
 * `nmm-performance-testing.ipynb`
 * `nmm-cache.ipynb`
+* `nmm-cache-rote-learning.ipynb`
+* `nmm-alpha-beta-pruning-rote-learning.ipynb`
 * `nmm-rote-training.ipynb`
